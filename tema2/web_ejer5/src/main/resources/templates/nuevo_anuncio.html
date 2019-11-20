@@ -1,0 +1,20 @@
+<html>
+<head>
+	<meta charset="UTF-8"/>
+</head>
+<body>
+
+	<h2>Nuevo anuncio (Número de anuncios: {{num_anuncios}})</h2>
+
+	<form action="/anuncio/nuevo" method="post">
+		<p>Nombre: </p>
+		<input type='text' name='nombre' value='{{nombre}}' >
+		<p>Asunto:</p>
+		<input type='text' name='asunto'>
+		<p>Comentario:</p>
+		<textarea name='comentario' rows=5 cols=40></textarea>
+
+		<input type='submit' value='Enviar'>
+	</form>
+</body>
+</html>

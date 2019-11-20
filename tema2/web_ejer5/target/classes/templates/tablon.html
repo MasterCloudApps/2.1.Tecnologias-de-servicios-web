@@ -1,0 +1,15 @@
+<html>
+<body>
+	{{#bienvenida}}
+	<h1>Bienvenido</h1>
+	{{/bienvenida}}
+	
+	<h1>Tablón Anuncios</h1>
+	{{#anuncios}}
+	<a href="/anuncio/{{-index}}">{{nombre}} {{asunto}} </a><br>
+	{{/anuncios}}
+	
+	<br>
+	<a href="/anuncio/nuevo_form">Nuevo anuncio</a>
+</body>
+</html>
