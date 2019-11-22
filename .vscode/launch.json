@@ -5,6 +5,20 @@
             "name": "CodeLens (Launch) - Application",
             "request": "launch",
             "mainClass": "es.urjc.code.daw.Application",
+            "projectName": "web_ejem4"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Application",
+            "request": "launch",
+            "mainClass": "es.urjc.code.daw.Application",
+            "projectName": "web_ejem1"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Application",
+            "request": "launch",
+            "mainClass": "es.urjc.code.daw.Application",
             "projectName": "web_ejem2"
         }
     ]

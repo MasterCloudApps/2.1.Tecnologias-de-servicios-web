@@ -1,0 +1,34 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-Application<web_ejem1>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "es.urjc.code.daw.Application",
+            "projectName": "web_ejem1",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-Application<web_ejem5>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "es.urjc.code.daw.Application",
+            "projectName": "web_ejem5",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-DemoApplication<ejer1clase>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "es.codeurjc.mca.tema2.ejer1clase.DemoApplication",
+            "projectName": "ejer1clase",
+            "args": ""
+        }
+    ]
+}

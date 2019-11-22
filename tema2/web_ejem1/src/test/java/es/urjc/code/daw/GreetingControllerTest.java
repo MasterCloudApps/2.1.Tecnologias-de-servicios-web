@@ -30,7 +30,7 @@ public class GreetingControllerTest {
 		assertThat(controller).isNotNull();
 		
 		assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/greeting",
-                String.class)).contains("Hello, World");
+                String.class)).contains("Hello, Mundo");
 	}
 
 }
