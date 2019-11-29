@@ -19,6 +19,12 @@ MongoClient.connect(url, {
     console.log(await getAllContacts());
     console.log("--------------------");
 
+    // Find a contact by one of its numbers
+    console.log(await contactsCollection.findOne({
+        phones: 22222
+    }));
+    console.log("--------------------");
+
     // Add a new element into an array
     await contactsCollection.updateOne({
         contact: "Bob"
