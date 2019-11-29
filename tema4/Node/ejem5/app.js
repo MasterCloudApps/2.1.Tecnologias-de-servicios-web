@@ -37,9 +37,8 @@ MongoClient.connect(url, {
         {$unwind: "$city_name"},
         {$group: {
             _id: null,
-            avgPopulation: {
-                $avg: "$city_name.population"
-            }}},
+            avgPopulation: { $avg: "$city_name.population"}
+        }},
         {$project: {_id: 0, avgPopulation: 1}}
     ]).toArray();
 
