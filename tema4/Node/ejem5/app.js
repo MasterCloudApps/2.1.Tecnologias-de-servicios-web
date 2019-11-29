@@ -27,31 +27,20 @@ MongoClient.connect(url, {
         population: 1500000
     }]);
 
-    var docs = await collection1.aggregate([{
-            $lookup: {
-                from: 'collection2',
-                localField: 'city',
-                foreignField: 'name',
-                as: 'city_name'
-            }
-        },
-        {
-            $unwind: "$city_name"
-        },
-        {
-            $group: {
-                _id: null,
-                avgPopulation: {
-                    $avg: "$city_name.population"
-                }
-            }
-        },
-        {
-            $project: {
-                _id: 0,
-                avgPopulation: 1
-            }
-        }
+    var docs = await collection1.aggregate([
+        {$lookup: {
+            from: 'collection2',
+            localField: 'city',
+            foreignField: 'name',
+            as: 'city_name'
+        }},
+        {$unwind: "$city_name"},
+        {$group: {
+            _id: null,
+            avgPopulation: {
+                $avg: "$city_name.population"
+            }}},
+        {$project: {_id: 0, avgPopulation: 1}}
     ]).toArray();
 
     console.log(docs);
