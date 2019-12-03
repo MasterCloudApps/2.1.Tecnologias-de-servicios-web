@@ -4,7 +4,7 @@
 *.springBeans
 *.settings
 *.mvn
-*/target
+**/target
 **/node_modules
 
 # Mobile Tools for Java (J2ME)
