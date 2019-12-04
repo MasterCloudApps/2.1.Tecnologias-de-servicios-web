@@ -14,7 +14,8 @@ public class GrpcClient {
             .usePlaintext()
             .build();
 
-        HelloServiceGrpc.HelloServiceBlockingStub client = HelloServiceGrpc.newBlockingStub(channel);
+        HelloServiceGrpc.HelloServiceBlockingStub client = 
+        		HelloServiceGrpc.newBlockingStub(channel);
 
         HelloRequest request = HelloRequest.newBuilder()
             .setFirstName("Baeldung")
