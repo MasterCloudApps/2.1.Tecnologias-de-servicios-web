@@ -8,10 +8,10 @@
 		<version>2.2.2.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.example</groupId>
-	<artifactId>Pr1</artifactId>
+	<groupId>es.codeurjc.mastercloudapps</groupId>
+	<artifactId>security-ejem1</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Pr1</name>
+	<name>security-ejem1</name>
 	<description>oauth2</description>
 
 	<properties>
