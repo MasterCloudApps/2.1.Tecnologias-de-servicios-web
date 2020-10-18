@@ -21,7 +21,7 @@ public class WebSocketHandler extends AbstractWebSocketHandler {
 
 		logger.info("Message received:" + message.getPayload());
 		
-		session.sendMessage(new TextMessage("Browser message 2"));
+		session.sendMessage(new TextMessage("Echo: "+ message.getPayload()));
 	}
 
 	@Override
@@ -33,6 +33,6 @@ public class WebSocketHandler extends AbstractWebSocketHandler {
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 		logger.info("User connected "+session.getId());
 		
-		session.sendMessage(new TextMessage("Browser message"));
+		session.sendMessage(new TextMessage("Hello user"));
 	}
 }
