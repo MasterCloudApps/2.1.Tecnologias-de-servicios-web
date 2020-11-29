@@ -1,17 +1,20 @@
 package es.codeurjc.web;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class GreetingController {
 
-	@GetMapping("/greeting")
-	public String greeting(Model model, @RequestParam String userName) {
+	@Autowired
+	private UserService usersService;
 
-		model.addAttribute("name", userName);
+	@GetMapping("/greeting")
+	public String greeting(Model model) {
+
+		model.addAttribute("name", usersService.getNumUsers() + " users");
 
 		return "greeting_template";
 	}

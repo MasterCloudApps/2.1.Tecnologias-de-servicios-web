@@ -1,14 +1,11 @@
 package es.codeurjc.web;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class UserService {
 
-	private int numUsers;
-
-	public UserService(int numUsers) {
-		this.numUsers = numUsers;
-	}
-
 	public int getNumUsers() {
-		return numUsers;
+		return 5;
 	}
 }
