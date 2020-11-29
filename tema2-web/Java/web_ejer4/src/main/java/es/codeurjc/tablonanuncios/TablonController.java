@@ -42,7 +42,18 @@ public class TablonController {
 		Anuncio anuncio = anuncios.get(num - 1);
 
 		model.addAttribute("anuncio", anuncio);
+		model.addAttribute("num", num);
 
 		return "ver_anuncio";
+	}
+	
+	@GetMapping("/anuncio/borrar/{num}")
+	public String borrarAnuncio(Model model, @PathVariable int num) {
+
+		Anuncio anuncio = anuncios.remove(num - 1);
+
+		model.addAttribute("anuncio", anuncio);
+
+		return "anuncio_borrado";
 	}
 }
