@@ -2,7 +2,6 @@ package es.codeurjc.web;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -16,7 +15,7 @@ public class MustacheController {
 	public String basic(Model model) {
 
 		model.addAttribute("name", "World");
-		model.addAttribute("silent", false);
+		model.addAttribute("show", true);
 
 		return "basic_template";
 	}
