@@ -1,0 +1,19 @@
+<html>
+<head>
+	<meta charset="UTF-8"/>
+</head>
+<body>
+	<form action="/post/new" method="post" enctype="multipart/form-data">
+		<p>User: </p>
+		<input type='text' name='user' value='{{#user}}{{.}}{{/user}}'/>
+		<p>Title:</p>
+		<input type='text' name='title'/>
+		<p>Text:</p>
+		<textarea name='text' rows=5 cols=40></textarea>
+		<p>Image file:</p>
+		<input type='file' name='image' accept=".jpg, .jpeg"/>	
+
+		<input type='submit' value='Save'/>
+	</form>
+</body>
+</html>
