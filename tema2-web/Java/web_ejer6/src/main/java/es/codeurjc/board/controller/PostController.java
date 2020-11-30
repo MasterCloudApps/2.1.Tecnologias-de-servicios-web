@@ -65,7 +65,7 @@ public class PostController {
 	@GetMapping("/post/{id}/delete")
 	public String deletePost(Model model, @PathVariable long id) {
 
-		postService.delete(id);
+		postService.deleteById(id);
 
 		return "deleted_post";
 	}

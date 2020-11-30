@@ -37,7 +37,7 @@ public class PostService {
 		this.posts.put(id, post);
 	}
 
-	public void delete(long id) {
+	public void deleteById(long id) {
 		this.posts.remove(id);
 	}
 
