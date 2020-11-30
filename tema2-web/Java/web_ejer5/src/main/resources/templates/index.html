@@ -1,0 +1,15 @@
+<html>
+<body>
+	<h1>Posts</h1>
+	{{#posts}}
+	<a href="post/{{id}}">{{user}} {{title}}</a><br>
+	{{/posts}}
+	
+	{{^posts}}
+	<p>No posts yet.</p>
+	{{/posts}}
+
+	<br>
+	<a href="new_post.html">New Post</a>
+</body>
+</html>
