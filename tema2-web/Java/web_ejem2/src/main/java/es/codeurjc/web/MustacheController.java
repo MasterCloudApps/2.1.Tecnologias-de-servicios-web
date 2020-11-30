@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class MustacheController {
-
+	
 	@GetMapping("/page")
 	public String page(Model model) {
 		return "page";
