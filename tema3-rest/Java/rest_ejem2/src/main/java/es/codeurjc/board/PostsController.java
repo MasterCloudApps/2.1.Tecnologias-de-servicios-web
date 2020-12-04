@@ -13,17 +13,17 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
 
-@RestController
+@RestController("/posts")
 public class PostsController {
 
 	private PostsManager posts = new PostsManager();
 
-	@GetMapping("/posts/")
+	@GetMapping("/")
 	public Collection<Post> getPosts() {
 		return posts.findAll();
 	}
 
-	@GetMapping("/posts/{id}")
+	@GetMapping("/{id}")
 	public ResponseEntity<Post> getPost(@PathVariable long id) {
 
 		Post post = posts.findById(id);
@@ -35,7 +35,7 @@ public class PostsController {
 		}
 	}
 
-	@PostMapping("/posts/")
+	@PostMapping("/")
 	public ResponseEntity<Post> createPost(@RequestBody Post post) {
 
 		posts.save(post);
@@ -45,7 +45,7 @@ public class PostsController {
 		return ResponseEntity.created(location).body(post);
 	}
 
-	@PutMapping("/posts/{id}")
+	@PutMapping("/{id}")
 	public ResponseEntity<Post> replacePost(@PathVariable long id, @RequestBody Post newPost) {
 
 		Post post = posts.findById(id);
@@ -61,7 +61,7 @@ public class PostsController {
 		}
 	}
 
-	@DeleteMapping("/posts/{id}")
+	@DeleteMapping("/{id}")
 	public ResponseEntity<Post> deletePost(@PathVariable long id) {
 
 		Post post = posts.findById(id);

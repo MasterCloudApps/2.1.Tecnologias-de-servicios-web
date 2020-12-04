@@ -1,4 +1,4 @@
-package es.codeurjc.daw;
+package es.codeurjc.board;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
