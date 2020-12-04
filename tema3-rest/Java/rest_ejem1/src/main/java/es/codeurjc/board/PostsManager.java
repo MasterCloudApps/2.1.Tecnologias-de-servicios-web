@@ -28,7 +28,7 @@ public class PostsManager {
 
 	public void save(Post post) {
 
-		if(post.getId() == 0) {
+		if(post.getId() == null || post.getId() == 0) {
 			long id = nextId.getAndIncrement();
 			post.setId(id);
 		}
