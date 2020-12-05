@@ -4,6 +4,9 @@ let router = express.Router();
 let posts = new Map();
 let nextId = 0;
 
+addPost({ user: "Pepe", title: "Vendo moto", text: "Barata, barata" });
+addPost({ user: "Juan", title: "Compro coche", text: "Pago bien" });
+
 function addPost(post) {
 
     let id = nextId++;
@@ -12,9 +15,6 @@ function addPost(post) {
 
     posts.set(post.id, post);
 }
-
-addPost({ user: "Pepe", title: "Vendo moto", text: "Barata, barata" });
-addPost({ user: "Juan", title: "Compro coche", text: "Pago bien" });
 
 router.get('/', (req, res) => {
 
