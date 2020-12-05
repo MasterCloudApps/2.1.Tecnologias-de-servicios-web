@@ -22,6 +22,8 @@ import es.codeurjc.board.service.UserSession;
 @Controller
 public class PostController {
 
+	private static final String POSTS_FOLDER = "posts";
+
 	@Autowired
 	private PostService postService;
 	
@@ -53,7 +55,7 @@ public class PostController {
 
 		postService.save(post);
 		
-		imageService.saveImage("posts", post.getId(), image);
+		imageService.saveImage(POSTS_FOLDER, post.getId(), image);
 		
 		userSession.setUser(post.getUser());
 		userSession.incNumPosts();
@@ -76,7 +78,7 @@ public class PostController {
 	@GetMapping("/post/{id}/image")	
 	public ResponseEntity<Object> downloadImage(@PathVariable int id) throws MalformedURLException {
 
-		return imageService.createResponseFromImage("posts", id);		
+		return imageService.createResponseFromImage(POSTS_FOLDER, id);		
 	}
 	
 	@GetMapping("/post/{id}/delete")
@@ -84,7 +86,7 @@ public class PostController {
 
 		postService.deleteById(id);
 		
-		imageService.deleteImage("posts", id);
+		imageService.deleteImage(POSTS_FOLDER, id);
 
 		return "deleted_post";
 	}
