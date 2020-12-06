@@ -42,7 +42,6 @@ public class PostController {
 		Optional<Post> post = posts.findById(id);
 
 		return ResponseEntity.of(post);
-		
 	}
 
 	@PostMapping("/")
@@ -58,17 +57,15 @@ public class PostController {
 	@PutMapping("/{id}")
 	public ResponseEntity<Post> replacePost(@PathVariable long id, @RequestBody Post newPost) {
 
-		Post post = posts.findById(id).get();
+		Optional<Post> post = posts.findById(id);
 
-		if (post != null) {
-
+		return ResponseEntity.of(post.map(p -> {
+			
 			newPost.setId(id);
 			posts.save(newPost);
-
-			return ResponseEntity.ok(post);
-		} else {
-			return ResponseEntity.notFound().build();
-		}
+			
+			return newPost;
+		}));
 	}
 
 	@DeleteMapping("/{id}")
@@ -76,11 +73,8 @@ public class PostController {
 
 		Optional<Post> post = posts.findById(id);
 
-		if (post.isPresent()) {
-			posts.deleteById(id);
-			return ResponseEntity.ok(post.get());
-		} else {
-			return ResponseEntity.notFound().build();
-		}
+		post.ifPresent(p -> posts.deleteById(id));
+		
+		return ResponseEntity.of(post);
 	}
 }
