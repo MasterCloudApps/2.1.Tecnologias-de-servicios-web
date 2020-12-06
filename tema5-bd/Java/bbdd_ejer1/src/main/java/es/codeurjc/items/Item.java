@@ -9,11 +9,16 @@ public class Item {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column
 	private boolean checked;
-	
-	@Column
 	private String description;
+
+	public Item() {
+	}
+			
+	public Item(String description, boolean checked) {
+		this.description = description;
+		this.checked = checked;
+	}
 
 	public Long getId() {
 		return id;

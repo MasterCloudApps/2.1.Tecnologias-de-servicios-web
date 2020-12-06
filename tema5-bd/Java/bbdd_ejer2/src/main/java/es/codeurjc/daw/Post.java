@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Entrada {
+public class Post {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -20,10 +20,11 @@ public class Entrada {
 	private String nickname;
 	private String title;
 	private String content;
+	
 	@OneToMany(cascade=CascadeType.ALL)
 	private List<Comment> comments;
 	
-	public Entrada() {
+	public Post() {
 	}
 
 	public long getId() {

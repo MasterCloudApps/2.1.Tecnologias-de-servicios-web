@@ -25,6 +25,13 @@ public class Comment {
 	public Comment() {
 	}
 
+	public Comment(String nickname, String comment, Date creationDate) {
+		super();
+		this.nickname = nickname;
+		this.comment = comment;
+		this.creationDate = creationDate;
+	}
+
 	public long getId() {
 		return id;
 	}

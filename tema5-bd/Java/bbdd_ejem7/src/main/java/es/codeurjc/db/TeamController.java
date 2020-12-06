@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -53,7 +54,8 @@ public class TeamController {
 	@DeleteMapping("/teams/{id}")	
 	public Team deleteTeam(@PathVariable Long id) {
 		Team team = teamRepository.findById(id).get();		
-		team.getPlayers().size(); //Force loading players from database before deleting team
+		//Force loading players from database to be returned as JSON
+		Hibernate.initialize(team.getPlayers());		
 		teamRepository.deleteById(id);
 		return team;
 	}
