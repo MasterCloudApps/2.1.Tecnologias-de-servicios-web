@@ -6,7 +6,7 @@
 
 	<groupId>es.codeurjc</groupId>
 	<artifactId>bbdd_ejem13</artifactId>
-	<version>0.1.0</version>
+	<version>0.0.1-SNAPSHOT</version>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -23,10 +23,6 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.data</groupId>
-			<artifactId>spring-data-jpa</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.h2database</groupId>
@@ -49,7 +45,7 @@
 			<artifactId>querydsl-jpa</artifactId>
 		</dependency>
 	</dependencies>
-
+	
 	<build>
 		<plugins>
 
@@ -66,7 +62,7 @@
 					<dependency>
 						<groupId>com.querydsl</groupId>
 						<artifactId>querydsl-apt</artifactId>
-						<version>4.2.1</version>
+						<version>4.4.0</version>
 					</dependency>
 				</dependencies>
 				<executions>

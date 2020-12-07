@@ -4,7 +4,6 @@ import static org.springframework.web.servlet.support.ServletUriComponentsBuilde
 
 import java.net.URI;
 import java.util.Collection;
-import java.util.Optional;
 
 import javax.annotation.PostConstruct;
 
@@ -38,11 +37,9 @@ public class ItemController {
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<Item> getItem(@PathVariable long id) {
+	public Item getItem(@PathVariable long id) {
 
-		Optional<Item> item = items.findById(id);
-
-		return ResponseEntity.of(item);
+		return items.findById(id).orElseThrow();
 	}
 
 	@PostMapping("/")
@@ -56,26 +53,23 @@ public class ItemController {
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<Item> replaceItem(@PathVariable long id, @RequestBody Item newItem) {
+	public Item replaceItem(@PathVariable long id, @RequestBody Item newItem) {
 
-		Optional<Item> item = items.findById(id);
+		items.findById(id).orElseThrow();
 
-		return ResponseEntity.of(item.map(i -> {
+		newItem.setId(id);
+		items.save(newItem);
 			
-			newItem.setId(id);
-			items.save(newItem);
-			
-			return newItem;
-		}));
+		return newItem;
 	}
 
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Item> deleteItem(@PathVariable long id) {
+	public Item deleteItem(@PathVariable long id) {
 
-		Optional<Item> item = items.findById(id);
+		Item item = items.findById(id).orElseThrow();
 
-		item.ifPresent(i -> items.deleteById(id));
+		items.deleteById(id);
 		
-		return ResponseEntity.of(item);
+		return item;
 	}
 }

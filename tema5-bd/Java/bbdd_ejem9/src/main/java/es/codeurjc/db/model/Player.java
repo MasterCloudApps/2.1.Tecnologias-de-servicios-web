@@ -6,26 +6,20 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-import com.fasterxml.jackson.annotation.JsonView;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Player {
 	
-	public interface BasicAtt {}
-	public interface TeamAtt {}
-
-	@JsonView(BasicAtt.class)
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
-	@JsonView(BasicAtt.class)
 	private String name;
 	
-	@JsonView(BasicAtt.class)
 	private int goals;
-	
-	@JsonView(TeamAtt.class)
+
+	@JsonIgnore
 	@ManyToOne
 	private Team team;
 

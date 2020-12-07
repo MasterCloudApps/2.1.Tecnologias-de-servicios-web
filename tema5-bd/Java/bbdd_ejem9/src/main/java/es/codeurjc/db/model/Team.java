@@ -9,26 +9,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonView;
-
 @Entity
 public class Team {
 	
-	public interface BasicAtt {}
-	public interface PlayersAtt {}
-
-	@JsonView(BasicAtt.class)
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	long id;
 
-	@JsonView(BasicAtt.class)
 	private String name;
 	
-	@JsonView(BasicAtt.class)
 	private int ranking;
 
-	@JsonView(PlayersAtt.class)
 	@OneToMany(mappedBy="team")
 	private List<Player> players = new ArrayList<>();
 
@@ -52,16 +43,12 @@ public class Team {
 		return name;
 	}
 
-	public void setName(String title) {
-		this.name = title;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public List<Player> getPlayers() {
 		return players;
-	}
-
-	public void setPlayers(List<Player> comments) {
-		this.players = comments;
 	}
 
 	@Override

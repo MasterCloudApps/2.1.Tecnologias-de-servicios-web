@@ -50,7 +50,7 @@ public class SchoolController {
 	//Deleting a student doesn't delete her associated project
 	@DeleteMapping("/students/{id}")
 	public Student deleteStudent(@PathVariable Long id) {
-		Student student = studentRepository.findById(id).get();		
+		Student student = studentRepository.findById(id).orElseThrow();		
 		studentRepository.deleteById(id);
 		return student;
 	}
@@ -58,7 +58,7 @@ public class SchoolController {
 	//A project only can be deleted if it has no associated student.
 	@DeleteMapping("/projects/{id}")
 	public Project deleteProject(@PathVariable Long id) {
-		Project project = projectRepository.findById(id).get();		
+		Project project = projectRepository.findById(id).orElseThrow();		
 		projectRepository.deleteById(id);
 		return project;
 	}

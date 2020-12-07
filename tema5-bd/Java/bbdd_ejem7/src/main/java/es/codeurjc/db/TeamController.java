@@ -53,7 +53,7 @@ public class TeamController {
 	//Deleting a team doesn't delete its associated players
 	@DeleteMapping("/teams/{id}")	
 	public Team deleteTeam(@PathVariable Long id) {
-		Team team = teamRepository.findById(id).get();		
+		Team team = teamRepository.findById(id).orElseThrow();		
 		//Force loading players from database to be returned as JSON
 		Hibernate.initialize(team.getPlayers());		
 		teamRepository.deleteById(id);
@@ -63,7 +63,7 @@ public class TeamController {
 	//A player only can be deleted if it has no associated team
 	@DeleteMapping("/players/{id}")	
 	public Player deleteProject(@PathVariable Long id) {
-		Player player = playerRepository.findById(id).get();		
+		Player player = playerRepository.findById(id).orElseThrow();		
 		playerRepository.deleteById(id);
 		return player;
 	}

@@ -42,7 +42,7 @@ public class BlogController {
 	// Deleting a blog delete its associated comments
 	@GetMapping("/blogs/{id}")
 	public Blog deleteBlog(@PathVariable Long id) {
-		Blog blog = blogRepository.findById(id).get();
+		Blog blog = blogRepository.findById(id).orElseThrow();
 		blogRepository.deleteById(id);
 		return blog;
 	}
@@ -50,7 +50,7 @@ public class BlogController {
 	//A comment only can be deleted if it has no associated blog
 	@DeleteMapping("/comments/{id}")
 	public Comment deleteComment(@PathVariable Long id) {
-		Comment comment = commentRepository.findById(id).get();
+		Comment comment = commentRepository.findById(id).orElseThrow();
 		commentRepository.deleteById(id);
 		return comment;
 	}

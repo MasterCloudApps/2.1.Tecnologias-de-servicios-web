@@ -1,8 +1,9 @@
 package es.codeurjc.board;
 
+import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
+
 import java.net.URI;
 import java.util.Collection;
-import java.util.Optional;
 
 import javax.annotation.PostConstruct;
 
@@ -16,7 +17,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
 
 @RestController
 @RequestMapping("/posts")
@@ -37,11 +37,9 @@ public class PostController {
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<Post> getPost(@PathVariable long id) {
+	public Post getPost(@PathVariable long id) {
 
-		Optional<Post> post = posts.findById(id);
-
-		return ResponseEntity.of(post);
+		return posts.findById(id).orElseThrow();
 	}
 
 	@PostMapping("/")
@@ -55,26 +53,23 @@ public class PostController {
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<Post> replacePost(@PathVariable long id, @RequestBody Post newPost) {
+	public Post replacePost(@PathVariable long id, @RequestBody Post newPost) {
 
-		Optional<Post> post = posts.findById(id);
+		posts.findById(id).orElseThrow();
 
-		return ResponseEntity.of(post.map(p -> {
+		newPost.setId(id);
+		posts.save(newPost);
 			
-			newPost.setId(id);
-			posts.save(newPost);
-			
-			return newPost;
-		}));
+		return newPost;
 	}
 
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Post> deletePost(@PathVariable long id) {
+	public Post deletePost(@PathVariable long id) {
 
-		Optional<Post> post = posts.findById(id);
+		Post post = posts.findById(id).orElseThrow();
 
-		post.ifPresent(p -> posts.deleteById(id));
+		posts.deleteById(id);
 		
-		return ResponseEntity.of(post);
+		return post;
 	}
 }

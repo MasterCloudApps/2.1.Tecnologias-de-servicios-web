@@ -46,7 +46,7 @@ public class SchoolController {
 	@JsonView(StudentView.class)
 	@GetMapping("/students/{id}")
 	public Student getStudent(@PathVariable long id) throws Exception {
-		return studentRepository.findById(id).get();
+		return studentRepository.findById(id).orElseThrow();
 	}
 	
 	interface ProjectView extends Project.BasicAtt, Project.StudentAtt, Student.BasicAtt {}
@@ -60,14 +60,14 @@ public class SchoolController {
 	@JsonView(ProjectView.class)
 	@GetMapping("/projects/{id}")
 	public Project getProject(@PathVariable long id) throws Exception {
-		return projectRepository.findById(id).get();
+		return projectRepository.findById(id).orElseThrow();
 	}
 	
 	//Deleting a student delete her associated project
 	@JsonView(StudentView.class)
 	@DeleteMapping("/students/{id}")	
 	public Student deleteStudent(@PathVariable Long id) {
-		Student student = studentRepository.findById(id).get();		
+		Student student = studentRepository.findById(id).orElseThrow();		
 		studentRepository.deleteById(id);
 		return student;
 	}
@@ -76,7 +76,7 @@ public class SchoolController {
 	@JsonView(ProjectView.class)
 	@DeleteMapping("/projects/{id}")	
 	public Project deleteProject(@PathVariable Long id) {
-		Project project = projectRepository.findById(id).get();		
+		Project project = projectRepository.findById(id).orElseThrow();		
 		projectRepository.deleteById(id);
 		return project;
 	}

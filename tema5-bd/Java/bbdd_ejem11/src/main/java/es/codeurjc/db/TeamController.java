@@ -67,6 +67,6 @@ public class TeamController {
 	@JsonView(PlayerView.class)
 	@GetMapping("/players/{id}")
 	public Player getPlayer(@PathVariable long id) throws Exception {
-		return playerRepository.findById(id).get();
+		return playerRepository.findById(id).orElseThrow();
 	}
 }
