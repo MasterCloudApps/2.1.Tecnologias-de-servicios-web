@@ -20,7 +20,7 @@ import static org.springframework.web.servlet.support.ServletUriComponentsBuilde
 public class PostController {
 
 	@Autowired
-	private PostManager posts;
+	private PostService posts;
 
 	@GetMapping("/")
 	public Collection<Post> getPosts() {

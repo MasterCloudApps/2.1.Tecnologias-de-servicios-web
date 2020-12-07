@@ -1,10 +1,9 @@
-package es.codeurjc.items;
-
-import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
+package es.codeurjc.board;
 
 import java.net.URI;
 import java.util.Collection;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,22 +13,24 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
 
 @RestController
-@RequestMapping("/items")
-public class ItemsController {
+@RequestMapping("/posts")
+public class PostController {
 
-	private ItemsManager items = new ItemsManager();
+	@Autowired
+	private PostService posts;
 
 	@GetMapping("/")
-	public Collection<Item> getItems() {
-		return items.findAll();
+	public Collection<Post> getPosts() {
+		return posts.findAll();
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<Item> getItem(@PathVariable long id) {
+	public ResponseEntity<Post> getPost(@PathVariable long id) {
 
-		Item post = items.findById(id);
+		Post post = posts.findById(id);
 
 		if (post != null) {
 			return ResponseEntity.ok(post);
@@ -39,9 +40,9 @@ public class ItemsController {
 	}
 
 	@PostMapping("/")
-	public ResponseEntity<Item> createItem(@RequestBody Item post) {
+	public ResponseEntity<Post> createPost(@RequestBody Post post) {
 
-		items.save(post);
+		posts.save(post);
 
 		URI location = fromCurrentRequest().path("/{id}").buildAndExpand(post.getId()).toUri();
 
@@ -49,14 +50,14 @@ public class ItemsController {
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<Item> replaceItem(@PathVariable long id, @RequestBody Item newItem) {
+	public ResponseEntity<Post> replacePost(@PathVariable long id, @RequestBody Post newPost) {
 
-		Item post = items.findById(id);
+		Post post = posts.findById(id);
 
 		if (post != null) {
 
-			newItem.setId(id);
-			items.save(newItem);
+			newPost.setId(id);
+			posts.save(newPost);
 
 			return ResponseEntity.ok(post);
 		} else {
@@ -65,12 +66,12 @@ public class ItemsController {
 	}
 
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Item> deleteItem(@PathVariable long id) {
+	public ResponseEntity<Post> deletePost(@PathVariable long id) {
 
-		Item post = items.findById(id);
+		Post post = posts.findById(id);
 
 		if (post != null) {
-			items.deleteById(id);
+			posts.deleteById(id);
 			return ResponseEntity.ok(post);
 		} else {
 			return ResponseEntity.notFound().build();

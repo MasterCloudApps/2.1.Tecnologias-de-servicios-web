@@ -8,12 +8,12 @@ import java.util.concurrent.atomic.AtomicLong;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ItemsManager {
+public class ItemService {
 
 	private ConcurrentMap<Long, Item> items = new ConcurrentHashMap<>();
 	private AtomicLong nextId = new AtomicLong(1);
 
-	public ItemsManager() {
+	public ItemService() {
 		save(new Item("Leche", false));
 		save(new Item("Pan", true));
 	}

@@ -8,12 +8,12 @@ import java.util.concurrent.atomic.AtomicLong;
 import org.springframework.stereotype.Service;
 
 @Service
-public class PostManager {
+public class PostService {
 
 	private ConcurrentMap<Long, Post> posts = new ConcurrentHashMap<>();
 	private AtomicLong nextId = new AtomicLong(1);
 
-	public PostManager() {
+	public PostService() {
 		save(new Post("Pepe", "Vendo moto", "Barata, barata"));
 		save(new Post("Juan", "Compro coche", "Pago bien"));
 	}
