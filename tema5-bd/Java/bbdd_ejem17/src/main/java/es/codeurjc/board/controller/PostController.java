@@ -1,9 +1,11 @@
 package es.codeurjc.board.controller;
 
+import static es.codeurjc.board.model.QPost.post;
 import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
 
 import java.net.URI;
-import java.util.List;
+
+import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,25 +21,38 @@ import org.springframework.web.bind.annotation.RestController;
 
 import es.codeurjc.board.model.Comment;
 import es.codeurjc.board.model.Post;
-import es.codeurjc.board.service.CommentService;
-import es.codeurjc.board.service.PostService;
+import es.codeurjc.board.repository.CommentRepository;
+import es.codeurjc.board.repository.PostRepository;
 
 @RestController
 @RequestMapping("/posts")
 public class PostController {
 
 	@Autowired
-	private PostService posts;
+	private PostRepository posts;
 
 	@Autowired
-	private CommentService comments;
+	private CommentRepository comments;
+
+	@PostConstruct
+	public void init() {
+
+		Post p = new Post();
+		p.setUser("Pepe");
+		p.setTitle("Vendo moto");
+		p.setText("Bla bla...");
+		p.addComment(new Comment("Juan", "Pues si"));
+		p.addComment(new Comment("Maria", "Pues no"));
+
+		posts.save(p);
+	}
 
 	@GetMapping("/")
-	public List<Post> getPosts(@RequestParam(required = false) String commentsUser) {
+	public Iterable<Post> getPosts(@RequestParam(required = false) String commentsUser) {
 		if(commentsUser == null) {
 			return posts.findAll();
 		} else {
-			return posts.findByCommentsUser(commentsUser);
+			return posts.findAll(post.comments.any().user.eq(commentsUser));
 		}
 	}
 
@@ -60,10 +75,15 @@ public class PostController {
 	@PutMapping("/{id}")
 	public Post replacePost(@RequestBody Post newPost, @PathVariable long id) {
 
+		Post post = posts.findById(id).orElseThrow();
+
 		newPost.setId(id);
-		
-		posts.replace(newPost);
-		
+
+		// We assume that comments are not updated with PUT operation
+		post.getComments().forEach(c -> newPost.addComment(c));
+
+		posts.save(newPost);
+
 		return newPost;
 	}
 
@@ -89,7 +109,6 @@ public class PostController {
 		Post post = posts.findById(idPost).orElseThrow();
 
 		comment.setPost(post);
-		
 		comments.save(comment);
 
 		URI location = fromCurrentRequest().path("/{id}").buildAndExpand(comment.getId()).toUri();
@@ -101,10 +120,13 @@ public class PostController {
 	public Comment replaceComment(@PathVariable long idPost, @PathVariable long idComment,
 			@RequestBody Comment updatedComment) {
 
+		Comment comment = comments.findById(idComment).orElseThrow();
+
 		updatedComment.setId(idComment);
+		updatedComment.setPost(comment.getPost());
 		
-		comments.replace(updatedComment);
-		
+		comments.save(updatedComment);
+
 		return updatedComment;
 	}
 

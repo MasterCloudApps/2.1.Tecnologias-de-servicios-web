@@ -15,7 +15,7 @@ import es.codeurjc.db.model.Student;
 
 @RestController
 public class SchoolController {
-	
+
 	@Autowired
 	private ProjectRepository projectRepository;
 	
@@ -25,16 +25,20 @@ public class SchoolController {
 	@PostConstruct
 	public void init() {
 
+		Project p1 = new Project("TFG1", 8);
+		projectRepository.save(p1);
+		
 		Student s1 = new Student("Pepe", 2010);
-		s1.setProject(new Project("TFG1", 8));
-		studentRepository.save(s1);
+		s1.setProject(p1);
 		
 		Student s2 = new Student("Juan", 2011);
+		
+		studentRepository.save(s1);
 		studentRepository.save(s2);		
 	}
 
 	@GetMapping("/students/")
-	public List<Student> getStudents() throws Exception {
+	public List<Student> getStudents() {
 		return studentRepository.findAll();
 	}
 	
@@ -43,7 +47,7 @@ public class SchoolController {
 		return projectRepository.findAll();
 	}
 	
-	//Deleting a student delete her associated project
+	//Deleting a student doesn't delete her associated project
 	@DeleteMapping("/students/{id}")
 	public Student deleteStudent(@PathVariable Long id) {
 		Student student = studentRepository.findById(id).orElseThrow();		

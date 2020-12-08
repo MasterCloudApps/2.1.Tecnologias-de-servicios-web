@@ -4,30 +4,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
-
-import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
 public class Project {
-	
-	public interface BasicAtt {}
-	public interface StudentAtt {}
 
-	@JsonView(BasicAtt.class)
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	long id;
 
-	@JsonView(BasicAtt.class)
 	private String title;
-	
-	@JsonView(BasicAtt.class)
 	private int calification;
-
-	@JsonView(StudentAtt.class)
-	@OneToOne(mappedBy = "project")
-	private Student student;
 
 	protected Project() {
 	}
@@ -59,14 +45,6 @@ public class Project {
 
 	public void setCalification(int calification) {
 		this.calification = calification;
-	}
-
-	public Student getStudent() {
-		return student;
-	}
-
-	public void setStudent(Student student) {
-		this.student = student;
 	}
 
 	@Override

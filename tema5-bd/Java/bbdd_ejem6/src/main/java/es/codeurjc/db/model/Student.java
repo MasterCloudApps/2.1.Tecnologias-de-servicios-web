@@ -7,27 +7,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
-import com.fasterxml.jackson.annotation.JsonView;
-
 @Entity
 public class Student {
 
-	public interface BasicAtt {}
-	public interface ProjectAtt {}
-	
-	@JsonView(BasicAtt.class)
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
-	@JsonView(BasicAtt.class)
 	private String name;
-	
-	@JsonView(BasicAtt.class)
 	private int year;
 
-	@JsonView(ProjectAtt.class)
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade=CascadeType.ALL)
 	private Project project;
 
 	protected Student() {

@@ -1,13 +1,15 @@
 package es.codeurjc.db.model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 @Entity
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Student {
 
 	@Id
@@ -17,7 +19,7 @@ public class Student {
 	private String name;
 	private int year;
 
-	@OneToOne(cascade=CascadeType.ALL)
+	@OneToOne
 	private Project project;
 
 	protected Student() {
