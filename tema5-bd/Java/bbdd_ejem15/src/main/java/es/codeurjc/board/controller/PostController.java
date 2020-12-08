@@ -3,7 +3,6 @@ package es.codeurjc.board.controller;
 import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
 
 import java.net.URI;
-import java.util.List;
 
 import javax.annotation.PostConstruct;
 
@@ -16,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import es.codeurjc.board.model.Comment;
@@ -47,8 +47,12 @@ public class PostController {
 	}
 
 	@GetMapping("/")
-	public List<Post> getPosts() {
-		return posts.findAll();
+	public Iterable<Post> getPosts(@RequestParam(required = false) String commentsUser) {
+		if(commentsUser == null) {
+			return posts.findAll();
+		} else {
+			return posts.findByCommentsUser(commentsUser);
+		}
 	}
 
 	@GetMapping("/{id}")
