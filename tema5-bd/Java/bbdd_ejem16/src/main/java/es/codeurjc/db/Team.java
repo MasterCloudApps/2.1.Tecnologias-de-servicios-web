@@ -1,4 +1,4 @@
-package com.example.demo;
+package es.codeurjc.db;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -6,19 +6,19 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Tournament {
-
+public class Team {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-
-	private String data;
-
-	public Tournament() {
+	
+	private String data;	
+	
+	public Team() {
 		super();
 	}
 
-	public Tournament(String data) {
+	public Team(String data) {
 		super();
 		this.data = data;
 	}
@@ -27,13 +27,8 @@ public class Tournament {
 		return data;
 	}
 
-	public void setData(String data) {
-		this.data = data;
-	}
-
 	@Override
 	public String toString() {
-		return "Tournament [id=" + id + ", data=" + data + "]";
+		return "Team [id=" + id + ", data=" + data + "]";
 	}
-
 }
