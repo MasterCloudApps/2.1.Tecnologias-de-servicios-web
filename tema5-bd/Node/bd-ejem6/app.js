@@ -1,5 +1,4 @@
-const MongoClient = require('mongodb').MongoClient;
-const ObjectId = require('mongodb').ObjectId;
+var mongoose = require('mongoose');
 const express = require('express');
 
 const url = "mongodb://localhost:27017/adsDB";
@@ -8,17 +7,18 @@ const app = express();
 
 app.use(express.json());
 
-let ads;
+let Ad;
 
 function toResponse(doc) {
-
-    if (doc instanceof Array) {
+    
+    if(doc instanceof Array){
         return doc.map(elem => toResponse(elem));
     } else {
-        let { _id, ...ret } = doc;
-        ret.id = doc._id.toString();
+        let ret = doc.toObject({ versionKey: false });
+        ret.id = ret._id.toString();
+        delete ret._id;
         return ret;
-    }
+    }    
 }
 
 app.post('/ads', async (req, res) => {
@@ -26,23 +26,26 @@ app.post('/ads', async (req, res) => {
     if (typeof ad.message != 'string' || typeof ad.author != 'string') {
         res.sendStatus(400);
     } else {
-        const newAd = {
+        
+        const newAd = new Ad({
             message: ad.message,
             author: ad.author
-        };
-        await ads.insertOne(newAd);
+        });
+        
+        await newAd.save();
+
         res.json(toResponse(newAd));
     }
 });
 
 app.get('/ads', async (req, res) => {
-    const allAds = await ads.find().toArray();
+    let allAds = await Ad.find().exec();
     res.json(toResponse(allAds));
 });
 
 app.get('/ads/:id', async (req, res) => {
     const id = req.params.id;
-    const ad = await ads.findOne({ _id: new ObjectId(id) });
+    const ad = await Ad.findById(id);
     if (!ad) {
         res.sendStatus(404);
     } else {
@@ -52,18 +55,18 @@ app.get('/ads/:id', async (req, res) => {
 
 app.delete('/ads/:id', async (req, res) => {
     const id = req.params.id;
-    const ad = await ads.findOne({ _id: new ObjectId(id) });
+    const ad = await Ad.findById(id);
     if (!ad) {
         res.sendStatus(404);
     } else {
-        await ads.deleteOne({ _id: new ObjectId(id) });
+        await Ad.findByIdAndDelete(id);
         res.json(toResponse(ad));
     }
 });
 
 app.put('/ads/:id', async (req, res) => {
     const id = req.params.id;
-    const ad = await ads.findOne({ _id: new ObjectId(id) });
+    const ad = await Ad.findById(id);
     if (!ad) {
         res.sendStatus(404);
     } else {
@@ -72,31 +75,36 @@ app.put('/ads/:id', async (req, res) => {
         if (typeof adReq.message != 'string' || typeof adReq.author != 'string') {
             res.sendStatus(400);
         } else {
-            //Create object with needed fields and assign id
-            const newAd = {
-                message: adReq.message,
-                author: adReq.author
-            };
-            //Update resource
-            await ads.updateOne({ _id: new ObjectId(id) }, { $set: newAd });
             
-            //Return new resource
-            newAd.id = id;
-            res.json(newAd);
+            //Update fields in model
+            ad.message = adReq.message;
+            ad.author = adReq.author;
+            
+            //Save
+            await ad.save();
+            
+            //Return updated resource
+            res.json(toResponse(ad));
         }
     }
 });
 
 async function dbConnect() {
 
-    let conn = await MongoClient.connect(url, {
+    await mongoose.connect(url, {
         useUnifiedTopology: true,
-        useNewUrlParser: true
+        useNewUrlParser: true,
+        useFindAndModify: false
     });
 
     console.log("Connected to Mongo");
 
-    ads = conn.db().collection('ads');
+    var adSchema = new mongoose.Schema({
+        message: String,
+        author: String
+    });
+
+    Ad = mongoose.model('Ad', adSchema);
 }
 
 async function main() {

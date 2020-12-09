@@ -2,7 +2,7 @@
     "name": "node-ddbb-ejem1",
     "version": "1.0.0",
     "dependencies": {
-        "mongodb": "3.3.5",
+        "mongoose": "5.8.1",
         "express": "4.17.1"
     }
 }

@@ -1,11 +1,27 @@
-var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://localhost:27017/customersDB";
+const MongoClient = require('mongodb').MongoClient;
+const url = "mongodb://localhost:27017/customersDB";
 
-MongoClient.connect(url, {
-    useUnifiedTopology: true,
-    useNewUrlParser: true
-}, function (err, db) {
-    if (err) throw err;
-    console.log("Database created!");
-    db.close();
-});
+async function main() {
+
+    const conn = await MongoClient.connect(url, {
+        useUnifiedTopology: true,
+        useNewUrlParser: true
+    });
+
+    console.log("Connected to Mongo");
+
+    const customers = conn.db().collection('customers');
+
+    await customers.insertOne({
+        firstName: 'Jack',
+        lastName: 'Bauer'
+    });
+
+    console.log("Customer inserted");
+
+    conn.close();
+
+    console.log("Connection closed");
+}
+
+main();

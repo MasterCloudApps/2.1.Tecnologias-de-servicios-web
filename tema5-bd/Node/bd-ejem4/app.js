@@ -1,37 +1,30 @@
-var express = require('express');
-var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://localhost:27017/";
+var mongoose = require('mongoose');
 
+const url = "mongodb://localhost:27017/customersDB";
 
-// Data base connection and initialization
-var contactsCollection;
+async function main() {
 
-MongoClient.connect(url, {
-    useUnifiedTopology: true,
-    useNewUrlParser: true
-}).then(async db => {
-    contactsCollection = db.db("contactsDB").collection("contactsCollection");
-    await contactsCollection.insertMany([{
-        contact: "Bob",
-        phones: [11111, 22222]
-    }, {
-        contact: "Alice",
-        phones: [333333, 444444]
-    }]);
-});
+    await mongoose.connect(url, {
+        useUnifiedTopology: true,
+        useNewUrlParser: true,
+        useFindAndModify: false
+    });
 
+    const conn = mongoose.connection;
 
-// Express controller initialization
-var app = express();
-app.use(express.json()); // support json encoded bodies
+    var customerSchema = new mongoose.Schema({
+        firstName: String,
+        lastName: String
+    });
 
-app.get("/", async function (req, res) {
-    res.json(await contactsCollection.find({}).toArray());
-});
+    var Customer = mongoose.model('Customer', customerSchema);
 
-app.post("/", async function (req, res) {
-    var response = await contactsCollection.insertOne(req.body);
-    res.json(response.ops[0]);
-});
+    let customer = new Customer({ firstName: 'Jack', lastName: 'Bauer' })
 
-app.listen(3000);
+    await customer.save();
+
+    conn.close();
+}
+
+main();
+
