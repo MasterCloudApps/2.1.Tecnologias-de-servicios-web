@@ -1,7 +1,0 @@
-{
-    "name": "node-ddbb-ejem2b",
-    "version": "1.0.0",
-    "dependencies": {
-        "mongodb": "3.3.5"
-    }
-}

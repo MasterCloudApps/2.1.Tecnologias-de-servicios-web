@@ -1,8 +1,0 @@
-{
-    "name": "node-ddbb-ejem4",
-    "version": "1.0.0",
-    "dependencies": {
-        "express": "4.17.1",
-        "mongodb": "3.3.5"
-    }
-}

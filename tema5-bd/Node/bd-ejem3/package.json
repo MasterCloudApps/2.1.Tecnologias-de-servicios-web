@@ -1,8 +1,8 @@
 {
-    "name": "node-ddbb-ejem1",
+    "name": "rest-ejem3",
     "version": "1.0.0",
     "dependencies": {
-        "mongodb": "3.3.5",
-        "express": "4.17.1"
+        "express": "4.17.1",
+        "mongodb": "^3.6.3"
     }
 }
