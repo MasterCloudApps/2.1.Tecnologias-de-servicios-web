@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>es.codeurjc.reactive</groupId>
-    <artifactId>users-reactive</artifactId>
+    <artifactId>7-users-reactive</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>users-reactive</name>
     <description>Users REST API in a imperative style</description>

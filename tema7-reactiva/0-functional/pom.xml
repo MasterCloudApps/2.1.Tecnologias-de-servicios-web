@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>es.codeurjc</groupId>
-    <artifactId>functional</artifactId>
+    <artifactId>0-functional</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>functional</name>
     <description>Functional programming in Java</description>

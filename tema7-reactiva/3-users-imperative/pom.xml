@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>es.codeurjc.reactive</groupId>
-    <artifactId>users-functional</artifactId>
+    <artifactId>3-users-imperative</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>users-functional</name>
+    <name>users-imperative</name>
     <description>Users REST API in a imperative style</description>
 
     <properties>
