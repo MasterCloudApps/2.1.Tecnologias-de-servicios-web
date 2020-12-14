@@ -61,9 +61,7 @@ public class PostController {
 	@PutMapping("/{id}")
 	public ResponseEntity<Post> replacePost(@PathVariable long id, @RequestBody Post newPost) {
 
-		Optional<Post> post = posts.findById(id);
-
-		if (post.isPresent()) {
+		if (posts.existsById(id)) {
 
 			newPost.setId(id);
 			posts.save(newPost);

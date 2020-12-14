@@ -26,5 +26,4 @@ public class SampleDataService {
 
 		posts.save(p);
 	}
-	
 }
