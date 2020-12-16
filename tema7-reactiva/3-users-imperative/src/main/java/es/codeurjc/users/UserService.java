@@ -27,11 +27,11 @@ public class UserService {
     }
 
     public User getUser(Long id) {
-        return userRepository.findById(id).get();
+        return userRepository.findById(id).orElseThrow();
     }
 
     public User deleteUser(Long id) {
-        User deletedUser = userRepository.findById(id).get();
+        User deletedUser = userRepository.findById(id).orElseThrow();
         userRepository.deleteById(id);
         return deletedUser;
     }
