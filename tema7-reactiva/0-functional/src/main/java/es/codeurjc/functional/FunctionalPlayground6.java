@@ -1,11 +1,9 @@
 package es.codeurjc.functional;
 
-import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
-
-import java.util.List;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
+
+import reactor.core.publisher.Flux;
 
 public class FunctionalPlayground6 {
 
@@ -21,7 +19,7 @@ public class FunctionalPlayground6 {
 
         System.out.println("--------------");
 
-        Flux pairs = Flux.generate(
+        Flux<Integer> pairs = Flux.generate(
             () -> 0,
             (state, sink) -> {
                 sink.next(state);

@@ -1,10 +1,6 @@
 package es.codeurjc.functional;
 
 import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
-import reactor.util.function.Tuples;
-
-import java.time.Duration;
 
 public class ReactivePlayground4 {
 

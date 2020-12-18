@@ -1,11 +1,10 @@
 package es.codeurjc.functional;
 
-import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
-
-import java.util.Arrays;
 import java.util.Optional;
 import java.util.stream.Stream;
+
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 public class FunctionalPlayground2 {
 

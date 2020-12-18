@@ -1,11 +1,10 @@
 package es.codeurjc.users;
 
-import org.springframework.stereotype.Component;
+import java.util.stream.Stream;
 
 import javax.annotation.PostConstruct;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Stream;
+
+import org.springframework.stereotype.Component;
 
 @Component
 public class DatabaseInitializer {

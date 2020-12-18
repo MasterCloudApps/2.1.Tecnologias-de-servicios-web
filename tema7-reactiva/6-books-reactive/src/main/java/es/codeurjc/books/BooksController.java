@@ -1,17 +1,14 @@
 package es.codeurjc.books;
 
-import org.springframework.http.MediaType;
+import java.util.List;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
 import org.springframework.web.reactive.function.client.WebClient;
+
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-
-import java.util.List;
-
-import static java.util.stream.Collectors.toList;
 
 class BooksResponse {
     public List<Book> items;

@@ -1,12 +1,8 @@
 package es.codeurjc.functional;
 
-import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
-
 import java.time.Duration;
-import java.time.temporal.TemporalUnit;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
+
+import reactor.core.publisher.Flux;
 
 public class ReactivePlayground1 {
 

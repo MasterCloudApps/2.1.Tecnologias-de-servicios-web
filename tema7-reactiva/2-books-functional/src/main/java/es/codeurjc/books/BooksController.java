@@ -1,14 +1,12 @@
 package es.codeurjc.books;
 
+import java.util.List;
+import java.util.stream.Stream;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
-
-import java.util.List;
-import java.util.stream.Stream;
-
-import static java.util.stream.Collectors.toList;
 
 class BooksResponse {
     public List<Book> items;
