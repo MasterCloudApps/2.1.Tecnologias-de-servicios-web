@@ -1,4 +1,4 @@
-package es.urjc.code.daw;
+package es.codeurjc.web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
