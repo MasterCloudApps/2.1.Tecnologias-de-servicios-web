@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>es.codeurjc.reactive</groupId>
-    <artifactId>1-books-imperative</artifactId>
+    <artifactId>reactive-ejem6-books-reactive</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>books-imperative</name>
+    <name>books-reactive</name>
     <description>Users REST API in a imperative style</description>
 
     <properties>
@@ -21,7 +21,7 @@
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <artifactId>spring-boot-starter-webflux</artifactId>
         </dependency>
 
         <dependency>

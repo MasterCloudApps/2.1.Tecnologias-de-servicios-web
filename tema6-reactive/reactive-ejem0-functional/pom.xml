@@ -8,8 +8,8 @@
         <version>2.3.4.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>es.codeurjc</groupId>
-    <artifactId>0-functional</artifactId>
+    <groupId>es.codeurjc.reactive</groupId>
+    <artifactId>reactive-ejem0-functional</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>functional</name>
     <description>Functional programming in Java</description>
