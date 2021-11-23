@@ -1,9 +1,10 @@
-let express = require('express');
-let mustacheExpress = require('mustache-express');
-let bodyParser = require('body-parser');
-let greetingRouter = require('./greetingRouter.js');
+import express from 'express';
+import mustacheExpress from 'mustache-express';
+import bodyParser from 'body-parser';
+import { __dirname } from './dirname.js';
+import greetingRouter from './greetingRouter.js';
 
-let app = express();
+const app = express();
 
 app.set('views', __dirname + '/../views');
 app.set('view engine', 'mustache');
@@ -15,6 +16,4 @@ app.use(express.static(__dirname + '/../public'));
 
 app.use('/', greetingRouter);
 
-app.listen(3000, () => {
-   console.log('Example app listening on port 3000!');
-});
+app.listen(3000, () => console.log('Listening on port 3000!'));
