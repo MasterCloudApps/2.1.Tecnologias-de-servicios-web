@@ -1,6 +1,5 @@
-const express = require('express');
-const postsRouter = require('./posts.js').router;
-const postsInit = require('./posts.js').init;
+import express from 'express';
+import { router as postsRouter, init as postsInit } from './posts.js';
 
 const app = express();
 
@@ -9,13 +8,8 @@ app.use(express.json());
 
 app.use(postsRouter);
 
-async function main() {
+await postsInit();
 
-    await postsInit();
-
-    app.listen(3000, () => {
-        console.log('Example app listening on port 3000!');
-    });
-}
-
-main();
+app.listen(3000, () => {
+    console.log('Example app listening on port 3000!');
+});

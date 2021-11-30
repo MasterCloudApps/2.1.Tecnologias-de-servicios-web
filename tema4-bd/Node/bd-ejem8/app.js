@@ -1,4 +1,4 @@
-const mysql = require('mysql2/promise');
+import mysql from 'mysql2/promise';
 
 let conn;
 
@@ -27,7 +27,7 @@ async function insertOneWithId() {
 async function findCustomerWithQuery() {
 
     const [rows, fields] = await conn.execute(
-        'SELECT * FROM customers WHERE firstName = ?', 
+        'SELECT * FROM customers WHERE firstName = ?',
         ['Jack']
     );
 
@@ -37,7 +37,7 @@ async function findCustomerWithQuery() {
 async function findCustomerById(id) {
 
     const [rows, fields] = await conn.execute(
-        'SELECT * FROM customers WHERE id = ?', 
+        'SELECT * FROM customers WHERE id = ?',
         [id]
     );
 
@@ -74,36 +74,39 @@ async function deleteCustomerById(id) {
 async function deleteCustomersByFirstName() {
 
     const [{ affectedRows }] = await conn.execute(
-        'DELETE FROM customers WHERE firstName = ?', 
+        'DELETE FROM customers WHERE firstName = ?',
         ['John']
     );
 
     console.log(`Deleted ${affectedRows} customers with name "John"`);
 }
 
-async function main() {
+conn = await mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: 'password',
+    database: 'posts'
+});
 
-    conn = await mysql.createConnection({
-        host: 'localhost',
-        user: 'root',
-        password: 'pass',
-        database: 'customersDB'
-    });
+console.log("Connected to MySQL");
 
-    console.log("Connected to MySQL");
-
-    await insertOne();
-    const id = await insertOneWithId();
-    await findCustomerWithQuery();
-    await findCustomerById(id);
-    await updateCustomerById(id);
-    await updateCustomersByFirstName();
-    await deleteCustomerById(id);
-    await deleteCustomersByFirstName();
-
-    await conn.close();
-
-    console.log("Connection closed");
+try {
+    await conn.execute('DROP TABLE customers');
+} catch(e){
+    console.log('Table CUSTOMERS doesn\'t exist');
 }
 
-main();
+await conn.execute('CREATE TABLE customers(id INT AUTO_INCREMENT PRIMARY KEY, firstName VARCHAR(255), lastName VARCHAR(255))');
+
+await insertOne();
+const id = await insertOneWithId();
+await findCustomerWithQuery();
+await findCustomerById(id);
+await updateCustomerById(id);
+await updateCustomersByFirstName();
+await deleteCustomerById(id);
+await deleteCustomersByFirstName();
+
+await conn.close();
+
+console.log("Connection closed");

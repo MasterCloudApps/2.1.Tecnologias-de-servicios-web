@@ -1,6 +1,6 @@
-const express = require('express');
-const url = require('url');
-const mongoose = require('mongoose');
+import express from 'express';
+import url from 'url';
+import mongoose from 'mongoose';
 
 const mongoUrl = "mongodb://localhost:27017/posts";
 
@@ -10,8 +10,7 @@ async function dbConnect() {
     
     await mongoose.connect(mongoUrl, {
         useUnifiedTopology: true,
-        useNewUrlParser: true,
-        useFindAndModify: false
+        useNewUrlParser: true
     });
 
     console.log("Connected to Mongo");
@@ -25,7 +24,7 @@ async function dbConnect() {
     Post = mongoose.model('Post', postSchema);
 }
 
-async function init() {
+export async function init() {
 
     await dbConnect();
 
@@ -33,7 +32,7 @@ async function init() {
     await new Post({ user: "Juan", title: "Compro coche", text: "Pago bien" }).save();
 }
 
-const router = express.Router();
+export const router = express.Router();
 
 function validPost(post) {
     return typeof post.text == 'string'
@@ -143,5 +142,3 @@ router.put('/posts/:id', async (req, res) => {
         }
     }
 });
-
-module.exports = { router, init }

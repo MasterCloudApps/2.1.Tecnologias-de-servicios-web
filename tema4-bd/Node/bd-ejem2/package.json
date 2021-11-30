@@ -1,7 +1,8 @@
 {
-    "name": "node-ddbb-ejem1",
+    "name": "bd-ejem2",
     "version": "1.0.0",
+    "type": "module",
     "dependencies": {
-        "mongodb": "3.3.5"
+        "mongodb": "4.2.0"
     }
 }

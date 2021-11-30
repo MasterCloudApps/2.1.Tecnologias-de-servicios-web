@@ -1,33 +1,31 @@
-const { Sequelize, Model, DataTypes } = require('sequelize');
+import sequelize_pkg from 'sequelize';
 
-async function main() {
+//Sequelize doesn't use named exports
+const { Sequelize, Model, DataTypes } = sequelize_pkg;
 
-    const sequelize = new Sequelize('customersDB', 'root', 'pass', {
-        dialect: 'mysql'
-    })
+const sequelize = new Sequelize('posts', 'root', 'password', {
+    dialect: 'mysql'
+})
 
-    class Customer extends Model { }
+class Customer extends Model { }
 
-    Customer.init({
-        firstName: DataTypes.STRING,
-        lastName: DataTypes.STRING
-    }, { sequelize, modelName: 'customer' });
+Customer.init({
+    firstName: DataTypes.STRING,
+    lastName: DataTypes.STRING
+}, { sequelize, modelName: 'customer' });
 
-    await sequelize.sync();
+await sequelize.sync();
 
-    console.log("Connected to MySQL");
+console.log("Connected to MySQL");
 
-    await Customer.create({
-        firstName: 'Jack',
-        lastName: 'Bauer'
-    });
+const customer = await Customer.create({
+    firstName: 'Jack',
+    lastName: 'Bauer'
+});
 
-    console.log("Customer inserted");
+console.log("Customer inserted: "+ JSON.stringify(customer));
 
-    await sequelize.close();
+await sequelize.close();
 
-    console.log("Connection closed");
+console.log("Connection closed");
 
-}
-
-main();

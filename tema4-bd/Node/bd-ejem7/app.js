@@ -1,26 +1,23 @@
-const mysql = require('mysql2/promise');
+import mysql from 'mysql2/promise';
 
-async function main() {
+const conn = await mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: 'password',
+    database: 'posts'
+});
 
-    const conn = await mysql.createConnection({
-        host: 'localhost',
-        user: 'root',
-        password: 'pass',
-        database: 'customersDB'
-    });
+console.log("Connected to MySQL");
 
-    console.log("Connected to MySQL");
+await conn.execute('CREATE TABLE customers(firstName VARCHAR(255), lastName VARCHAR(255))');
 
-    await conn.execute(
-        'INSERT INTO customers SET firstName = ?, lastName = ?',
-        ['Jack', 'Bauer']
-    );
+await conn.execute(
+    'INSERT INTO customers SET firstName = ?, lastName = ?',
+    ['Jack', 'Bauer']
+);
 
-    console.log("Customer inserted");
+console.log("Customer inserted");
 
-    await conn.close();
+await conn.close();
 
-    console.log("Connection closed");
-}
-
-main();
+console.log("Connection closed");

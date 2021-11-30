@@ -1,18 +1,18 @@
-const { Sequelize, Model, DataTypes } = require('sequelize');
+import sequelize_pkg from 'sequelize';
+
+//Sequelize doesn't use named exports
+const { Sequelize, Model, DataTypes } = sequelize_pkg;
 
 let Customer;
 
-function toPlainObj(model){
+function toPlainObj(model) {
 
-    //JSON.stringify(model) returns a plain JSON as string
-
-    if(model instanceof Array){
-        return model.map( m => toPlainObj(m));
+    if (model instanceof Array) {
+        return model.map(m => toPlainObj(m));
     } else {
         return model.get({ plain: true });
     }
 }
-
 
 async function insertOne() {
 
@@ -73,36 +73,30 @@ async function deleteCustomersByFirstName() {
 }
 
 
-async function main() {
+const sequelize = new Sequelize('posts', 'root', 'password', {
+    dialect: 'mysql'
+})
 
-    const sequelize = new Sequelize('customersDB', 'root', 'pass', {
-        dialect: 'mysql'
-    })
+Customer = class extends Model { }
 
-    Customer = class extends Model { }
+Customer.init({
+    firstName: DataTypes.STRING,
+    lastName: DataTypes.STRING
+}, { sequelize, modelName: 'customer' });
 
-    Customer.init({
-        firstName: DataTypes.STRING,
-        lastName: DataTypes.STRING
-    }, { sequelize, modelName: 'customer' });
+await sequelize.sync();
 
-    await sequelize.sync();
+console.log("Connected to MySQL");
 
-    console.log("Connected to MySQL");
+await insertOne();
+const id = await insertOneWithId();
+await findCustomerWithQuery();
+await findCustomerById(id);
+await updateCustomerById(id);
+await updateCustomersByFirstName();
+await deleteCustomerById(id);
+await deleteCustomersByFirstName();
 
-    await insertOne();
-    const id = await insertOneWithId();
-    await findCustomerWithQuery();
-    await findCustomerById(id);
-    await updateCustomerById(id);
-    await updateCustomersByFirstName();
-    await deleteCustomerById(id);
-    await deleteCustomersByFirstName();
+await sequelize.close();
 
-    await sequelize.close();
-
-    console.log("Connection closed");
-
-}
-
-main();
+console.log("Connection closed");

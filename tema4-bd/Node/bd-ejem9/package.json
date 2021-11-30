@@ -1,15 +1,9 @@
 {
-  "name": "ejem9",
+  "name": "bd-ejem9",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC",
+  "type": "module",
   "dependencies": {
-    "mysql2": "^2.0.2",
-    "sequelize": "^5.21.3"
+    "mysql2": "2.3.3",
+    "sequelize": "5.22.4"
   }
 }

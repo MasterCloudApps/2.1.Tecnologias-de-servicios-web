@@ -1,5 +1,4 @@
-const MongoClient = require('mongodb').MongoClient;
-const ObjectId = require('mongodb').ObjectId;
+import { MongoClient, ObjectId } from 'mongodb';
 
 const url = "mongodb://localhost:27017/customersDB";
 
@@ -96,34 +95,27 @@ async function deleteCustomersByFirstName() {
     console.log(`Deleted ${deletedCount} customers with name "John"`);
 }
 
+conn = await MongoClient.connect(url, {
+    useUnifiedTopology: true,
+    useNewUrlParser: true
+});
 
+console.log("Connected to Mongo");
 
-async function main() {
+customers = conn.db().collection('customers');
 
-    conn = await MongoClient.connect(url, {
-        useUnifiedTopology: true,
-        useNewUrlParser: true
-    });
+await insertOne();
+const id = await insertOneWithId();
+await insertMany();
+await insertManyWithId();
+await findCustomerWithQuery();
+await findCustomerById(id);
+await updateCustomerById(id);
+await updateCustomersByFirstName();
+await deleteCustomerById(id);
+await deleteCustomersByFirstName();
 
-    console.log("Connected to Mongo");
+conn.close();
 
-    customers = conn.db().collection('customers');
-
-    await insertOne();
-    const id = await insertOneWithId();
-    await insertMany();
-    await insertManyWithId();
-    await findCustomerWithQuery();
-    await findCustomerById(id);
-    await updateCustomerById(id);
-    await updateCustomersByFirstName();
-    await deleteCustomerById(id);
-    await deleteCustomersByFirstName();
-
-    conn.close();
-
-    console.log("Connection closed");
-}
-
-main();
+console.log("Connection closed");
 

@@ -1,4 +1,4 @@
-var mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const url = "mongodb://localhost:27017/customersDB";
 
@@ -66,7 +66,7 @@ async function findCustomerById(id) {
 
 async function updateCustomerById(id) {
 
-    await Customer.findByIdAndUpdate(id,{ $set: { firstName: 'Pedro', age: 45 }});
+    await Customer.findByIdAndUpdate(id, { $set: { firstName: 'Pedro', age: 45 } });
 
     console.log('Updated customer with id:', id);
 }
@@ -95,37 +95,31 @@ async function deleteCustomersByFirstName() {
     console.log(`Deleted ${deletedCount} customers with name "John"`);
 }
 
-async function main() {
+await mongoose.connect(url, {
+    useUnifiedTopology: true,
+    useNewUrlParser: true
+});
 
-    await mongoose.connect(url, {
-        useUnifiedTopology: true,
-        useNewUrlParser: true,
-        useFindAndModify: false
-    });
+console.log("Connected to Mongo");
 
-    console.log("Connected to Mongo");
+const customerSchema = new mongoose.Schema({
+    firstName: String,
+    lastName: String
+});
 
-    var customerSchema = new mongoose.Schema({
-        firstName: String,
-        lastName: String
-    });
+Customer = mongoose.model('Customer', customerSchema);
 
-    Customer = mongoose.model('Customer', customerSchema);
+await insertOne();
+const id = await insertOneWithId();
+await insertMany();
+await insertManyWithId();
+await findCustomerWithQuery();
+await findCustomerById(id);
+await updateCustomerById(id);
+await updateCustomersByFirstName();
+await deleteCustomerById(id);
+await deleteCustomersByFirstName();
 
-    await insertOne();
-    const id = await insertOneWithId();
-    await insertMany();
-    await insertManyWithId();
-    await findCustomerWithQuery();
-    await findCustomerById(id);
-    await updateCustomerById(id);
-    await updateCustomersByFirstName();
-    await deleteCustomerById(id);
-    await deleteCustomersByFirstName();
+mongoose.connection.close();
 
-    conn.close();
-
-    console.log("Connection closed");
-}
-
-main();
+console.log("Connection closed");

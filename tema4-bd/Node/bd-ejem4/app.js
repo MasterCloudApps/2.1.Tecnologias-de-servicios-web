@@ -1,30 +1,24 @@
-var mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const url = "mongodb://localhost:27017/customersDB";
 
-async function main() {
+await mongoose.connect(url, {
+    useUnifiedTopology: true,
+    useNewUrlParser: true
+});
 
-    await mongoose.connect(url, {
-        useUnifiedTopology: true,
-        useNewUrlParser: true,
-        useFindAndModify: false
-    });
+const customerSchema = new mongoose.Schema({
+    firstName: String,
+    lastName: String
+});
 
-    const conn = mongoose.connection;
+const Customer = mongoose.model('Customer', customerSchema);
 
-    var customerSchema = new mongoose.Schema({
-        firstName: String,
-        lastName: String
-    });
+const customer = new Customer({ firstName: 'Jack', lastName: 'Bauer' })
 
-    var Customer = mongoose.model('Customer', customerSchema);
+await customer.save();
 
-    let customer = new Customer({ firstName: 'Jack', lastName: 'Bauer' })
+console.log(customer);
 
-    await customer.save();
-
-    conn.close();
-}
-
-main();
+mongoose.connection.close();
 

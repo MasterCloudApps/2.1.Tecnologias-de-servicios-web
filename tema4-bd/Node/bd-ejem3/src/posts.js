@@ -1,7 +1,6 @@
-const express = require('express');
-const { ObjectId } = require('mongodb');
-const url = require('url');
-const MongoClient = require('mongodb').MongoClient;
+import express from 'express';
+import { MongoClient, ObjectId } from 'mongodb';
+import url from 'url';
 
 const mongoUrl = "mongodb://localhost:27017/posts";
 
@@ -16,7 +15,7 @@ async function dbConnect() {
     posts = conn.db().collection('posts');
 }
 
-async function init() {
+export async function init() {
 
     await dbConnect();
 
@@ -24,7 +23,7 @@ async function init() {
     await posts.insertOne({ user: "Juan", title: "Compro coche", text: "Pago bien" });
 }
 
-const router = express.Router();
+export const router = express.Router();
 
 function validPost(post) {
     return typeof post.text == 'string'
@@ -139,5 +138,3 @@ router.put('/posts/:id', async (req, res) => {
         }
     }
 });
-
-module.exports = { router, init }
