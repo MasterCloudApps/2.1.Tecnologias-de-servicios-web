@@ -1,5 +1,5 @@
-const express = require('express');
-const url = require('url');
+import express from 'express';
+import url from 'url';
 
 const router = express.Router();
 
@@ -101,8 +101,6 @@ router.put('/posts/:id', (req, res) => {
     }
 });
 
-
-
-module.exports = router;
+export default router;
 
 
