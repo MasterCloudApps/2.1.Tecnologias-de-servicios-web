@@ -8,8 +8,6 @@ function promiseFunction(message) {
     });
 }
 
-(async function () {
-    await promiseFunction('This is promise 1!');
-    await promiseFunction('This is promise 2!');
-    await promiseFunction('This is promise 3!');
-}());
+await promiseFunction('This is promise 1!');
+await promiseFunction('This is promise 2!');
+await promiseFunction('This is promise 3!');

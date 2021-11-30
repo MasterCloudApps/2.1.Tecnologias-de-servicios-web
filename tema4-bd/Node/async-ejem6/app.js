@@ -16,18 +16,15 @@ async function asyncFunction(message) { // You can only use "await" statement if
     throw TypeError("name must be a string");
 }
 
-(async function () {
-    await promiseFunction('This is promise 1!');
-    await promiseFunction('This is promise 2!');
-    await promiseFunction('This is promise 3!');
-    await asyncFunction('This is async 1!');
-    await asyncFunction('This is async 2!');
-    await asyncFunction('This is async 3!');
-}());
-
-
 function sleep(millis) {
     return new Promise(resolve => {
         setTimeout(() => resolve(), millis);
     });
 }
+
+await promiseFunction('This is promise 1!');
+await promiseFunction('This is promise 2!');
+await promiseFunction('This is promise 3!');
+await asyncFunction('This is async 1!');
+await asyncFunction('This is async 2!');
+await asyncFunction('This is async 3!');

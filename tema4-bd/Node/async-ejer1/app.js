@@ -1,6 +1,6 @@
-var axios = require('axios');
+import axios from 'axios';
 
-axios.get('https://jsonplaceholder.typicode.com/posts/1') // ERR: https://jsonplaceholder.typicode.coms/posts/1
+axios.get('https://jsonplaceholder.typicode.com/posts/1')
 .then(response => {
     console.log('Request successful. HTTP status: ' + response.status + ' ' + response.statusText);
     console.log(response.data);
