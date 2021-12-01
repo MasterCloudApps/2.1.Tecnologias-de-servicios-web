@@ -21,7 +21,7 @@ function addPost(post) {
 function validPost(post) {
     return typeof post.text == 'string'
         && typeof post.user == 'string'
-        && typeof post.text == 'string';
+        && typeof post.title == 'string';
 }
 
 function fullUrl(req) {
@@ -39,6 +39,9 @@ router.post('/posts', (req, res) => {
     if (!validPost(req.body)) {
         res.sendStatus(400);
     } else {
+
+        //const { user, title, text } = req.body;
+        //let post = { user, title, text};
 
         let post = {
             user: req.body.user,
