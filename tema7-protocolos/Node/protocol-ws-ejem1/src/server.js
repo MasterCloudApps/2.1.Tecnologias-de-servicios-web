@@ -1,19 +1,19 @@
-const WebSocket = require('ws');
+import { WebSocketServer } from 'ws';
 
-const wss = new WebSocket.Server({ port: 8080 });
+const wss = new WebSocketServer({ port: 3000 });
 
-wss.on('connection', function connection(ws, req) {
+wss.on('connection', (ws, req) => {
 
     console.log('User connected');
 
-    ws.on('message', function (msg) {
+    ws.on('message', msg => {
         console.log('Message received:' + msg);
     });
 
-    setInterval(()=>{
+    setInterval(() => {
 
-        ws.send("Browser message");
+        ws.send("Client message");
 
-    },1000);
+    }, 1000);
 
 });

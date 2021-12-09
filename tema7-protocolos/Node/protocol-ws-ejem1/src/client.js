@@ -1,16 +1,16 @@
-const WebSocket = require('ws');
+import WebSocket from 'ws';
 
-let socket = new WebSocket("ws://localhost:8080/");
+let socket = new WebSocket("ws://localhost:3000/");
 
-socket.on('open', function (e) {
+socket.on('open', event => {
     console.log("WebSocket connection established");
 });
 
-socket.on('message', function (data) {
+socket.on('message', data => {
     console.log(`[message] Data received from server: ${data}`);
 });
 
-socket.on('close', function (event) {
+socket.on('close', event => {
     if (event.wasClean) {
         console.log(`[close] Connection closed cleanly, code=${event.code} reason=${event.reason}`);
     } else {
@@ -18,7 +18,7 @@ socket.on('close', function (event) {
     }
 });
 
-socket.on('error', function (error) {
+socket.on('error', error => {
     console.log(`[error] ${error.message}`);
 });
 
