@@ -1,30 +1,30 @@
-var express = require('express');
-var app = express();
-var expressWs = require('express-ws')(app);
+import express from 'express';
+import expressws from 'express-ws';
+import { __dirname } from './dirname.js';
 
-app.use(express.static('public'));
+const app = express();
+expressws(app);
 
-app.get('/test', function (req, res, next) {
+app.use(express.static(__dirname + '/../public'));
+
+app.get('/test', (req, res) => {
     console.log('/test endpoint executed');
-    res.json({message:"Test response"});
+    res.json({ message: "Test response" });
     res.end();
 });
 
-app.ws('/notifications', function (ws, req) {
+app.ws('/notifications', (ws, req) => {
 
     console.log('User connected');
 
-    ws.on('message', function (msg) {
+    ws.on('message', (msg) => {
         console.log('Message received:' + msg);
     });
 
-    setInterval(()=>{
-
+    setInterval(() => {
         ws.send("Browser message");
-
-    },1000);
-
+    }, 1000);
 });
 
-app.listen(8080);
+app.listen(3000, () => console.log('Listening on port 3000!'));
 

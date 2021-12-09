@@ -1,14 +1,14 @@
 let socket = new WebSocket("ws://"+window.location.host+"/notifications");
 
-socket.onopen = function (e) {
+socket.onopen = e => {
     console.log("WebSocket connection established");
 };
 
-socket.onmessage = function (event) {
+socket.onmessage = event => {
     console.log(`[message] Data received from server: ${event.data}`);
 };
 
-socket.onclose = function (event) {
+socket.onclose = event => {
     if (event.wasClean) {
         console.log(`[close] Connection closed cleanly, code=${event.code} reason=${event.reason}`);
     } else {
@@ -16,7 +16,7 @@ socket.onclose = function (event) {
     }
 };
 
-socket.onerror = function (error) {
+socket.onerror = error => {
     console.log(`[error] ${error.message}`);
 };
 
