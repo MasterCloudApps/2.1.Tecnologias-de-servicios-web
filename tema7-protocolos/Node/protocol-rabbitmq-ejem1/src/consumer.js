@@ -1,16 +1,20 @@
-var amqp = require('amqplib/callback_api');
+import { connect } from 'amqplib';
 
-const CONN_URL = 'amqp://guest:guest@localhost';
+let channel = null;
 
-amqp.connect(CONN_URL, async function (err, conn) {
-
-    let ch = await conn.createChannel();
-
-    ch.consume('messages', function (msg) {
-
-        console.log("Message:", msg.content.toString());
-
-    }, { noAck: true }
-    );
-
+process.on('exit', (code) => {
+    channel.close();
+    console.log(`Closing rabbitmq channel`);
 });
+
+const rabbitClient = await connect('amqp://guest:guest@localhost');
+
+channel = await rabbitClient.createChannel();
+
+channel.assertQueue("messages");
+
+channel.consume("messages", (msg) => {
+
+    console.log("Consumed from queue: '", msg.content.toString()+ "'");
+
+}, { noAck: true });
