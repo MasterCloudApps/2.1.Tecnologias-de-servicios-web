@@ -1,6 +1,7 @@
 {
     "name": "noed-async-ejer1",
     "version": "1.0.0",
+    "type": "module",
     "dependencies": {
         "axios": "0.24.0"
     }
