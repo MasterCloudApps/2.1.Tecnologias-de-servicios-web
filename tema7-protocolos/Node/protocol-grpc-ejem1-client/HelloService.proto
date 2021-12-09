@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package es.codeurjc.mastercloudapps.grpc;
+package helloworld;
 
 message HelloRequest {
     string firstName = 1;
