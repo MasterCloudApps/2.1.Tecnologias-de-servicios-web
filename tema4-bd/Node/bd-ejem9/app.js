@@ -3,7 +3,7 @@ import sequelize_pkg from 'sequelize';
 //Sequelize doesn't use named exports
 const { Sequelize, Model, DataTypes } = sequelize_pkg;
 
-const sequelize = new Sequelize('posts', 'root', 'password', {
+const sequelize = new Sequelize('posts', 'root', 'pass', {
     dialect: 'mysql'
 })
 
