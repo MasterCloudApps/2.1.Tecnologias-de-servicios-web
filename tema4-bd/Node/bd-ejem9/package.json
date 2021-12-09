@@ -1,0 +1,9 @@
+{
+  "name": "bd-ejem9",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "mysql2": "2.3.3",
+    "sequelize": "5.22.4"
+  }
+}

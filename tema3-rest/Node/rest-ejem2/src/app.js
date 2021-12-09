@@ -1,5 +1,5 @@
-const express = require('express');
-const postsRouter = require('./postsRouter.js');
+import express from 'express';
+import postsRouter from './postsRouter.js';
 
 const app = express();
 

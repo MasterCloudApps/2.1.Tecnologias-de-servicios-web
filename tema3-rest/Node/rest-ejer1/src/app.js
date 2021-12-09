@@ -1,5 +1,5 @@
-const express = require('express');
-const itemsRouter = require('./itemsRouter.js');
+import express from 'express';
+import itemsRouter from './itemsRouter.js';
 
 const app = express();
 
