@@ -15,13 +15,11 @@ async function dbConnect() {
 
     console.log("Connected to Mongo");
 
-    var postSchema = new mongoose.Schema({
+    Post = mongoose.model('Post', new mongoose.Schema({
         user: String,
         title: String,
         text: String
-    });
-
-    Post = mongoose.model('Post', postSchema);
+    }));
 }
 
 export async function init() {
