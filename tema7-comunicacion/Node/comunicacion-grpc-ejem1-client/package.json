@@ -1,0 +1,9 @@
+{
+  "name": "grpc-ejem1-client",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "@grpc/proto-loader": "0.5.3",
+    "@grpc/grpc-js": "1.4.4"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "name": "ws-ejem2",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "ws": "8.3.0"
+  }
+}

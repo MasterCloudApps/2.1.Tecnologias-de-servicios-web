@@ -11,10 +11,9 @@ async function async3() {
     return 'Async 3';
 }
 
-Promise.all([async1(), async2(), async3()])
-    .then(values => {
-        console.log(values);
-    }).catch(error => console.error(error));
+console.log(await async1());
+console.log(await async2());
+console.log(await async3());
 
 const [v1, v2, v3] = await Promise.all([async1(), async2(), async3()])
 

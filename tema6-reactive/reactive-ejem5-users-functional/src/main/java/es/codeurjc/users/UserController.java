@@ -27,14 +27,13 @@ public class UserController {
 
     @PostMapping("/")
     @ResponseStatus(HttpStatus.CREATED)
-    public UserDTO createUser(@RequestBody UserDTO user) {
-        return toUserDTO(userService.createUser(toUser(user)));
+    public UserDTO createUser(@RequestBody UserDTO userDto) {
+        return toUserDTO(userService.createUser(toUser(userDto)));
     }
 
     @GetMapping("/")
     public Stream<UserDTO> getUsers(@RequestParam(required = false) Optional<String> firstName) {
-        return userService.getUsers(firstName)
-            .map(this::toUserDTO);
+        return userService.getUsers(firstName).map(this::toUserDTO);
     }
 
     @GetMapping("/{id}")
@@ -45,8 +44,7 @@ public class UserController {
     @DeleteMapping("/{id}")
     public ResponseEntity<UserDTO> deleteUser(@PathVariable Long id) {
 
-        Optional<UserDTO> userDTO = userService.deleteUser(id)
-            .map(this::toUserDTO);
+        Optional<UserDTO> userDTO = userService.deleteUser(id).map(this::toUserDTO);
 
         return ResponseEntity.of(userDTO);
     }

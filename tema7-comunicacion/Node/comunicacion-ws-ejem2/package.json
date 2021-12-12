@@ -1,0 +1,9 @@
+{
+  "name": "ws-ejem2",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "express": "4.17.1",
+    "express-ws": "5.0.2"
+  }
+}

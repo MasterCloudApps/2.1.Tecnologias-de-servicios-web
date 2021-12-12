@@ -3,6 +3,7 @@
 *.classpath
 *.springBeans
 *.settings
+.gradle
 *.mvn
 **/target
 **/node_modules

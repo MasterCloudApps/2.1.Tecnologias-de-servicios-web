@@ -6,4 +6,6 @@ try {
     console.log(response.data);
 } catch (error) {
     console.error(error.message);
+} finally {
+    console.log('Request ended');
 }

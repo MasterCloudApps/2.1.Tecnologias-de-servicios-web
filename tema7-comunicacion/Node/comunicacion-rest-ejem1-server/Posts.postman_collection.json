@@ -1,0 +1,130 @@
+{
+	"info": {
+		"_postman_id": "bd4d4a6c-5e61-44fc-aa14-899454c18fcd",
+		"name": "Posts",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET POSTS",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/posts/",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"posts",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET POST",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/posts/1",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"posts",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CREATE POST",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"user\": \"Alberto\", \"title\": \"Cambio bici\", \"text\": \"MTB por carretera\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:3000/posts/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"posts",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UPDATE POST",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"user\": \"Alberto\", \"title\": \"Cambio bici\", \"text\": \"MTB por flaca\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/posts/3",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"posts",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE POST",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/posts/3",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"posts",
+						"3"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"id": "083d6474-22f0-425c-a89d-26d4cb7c29ac",
+			"key": "server",
+			"value": "127.0.0.1:3000"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
