@@ -43,7 +43,13 @@ public class Publisher {
 			.addData(data.getBytes())
 			.build();
 		
-		producer.send(message, confirmationStatus -> System.out.println("Message sent!"));
+		producer.send(message, confirmationStatus -> {
+			if(confirmationStatus.isConfirmed()) {
+				System.out.println("Message sent!");
+			} else {
+				System.out.println("Ooops, something went wrong!");
+			}
+		});
 
 	}
 	
