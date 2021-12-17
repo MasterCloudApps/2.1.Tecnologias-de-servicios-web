@@ -1,0 +1,37 @@
+version: '2'
+
+services:
+  # this is our kafka cluster.
+  kafka:
+    image: landoop/fast-data-dev:cp3.3.0
+    environment:
+      ADV_HOST: 127.0.0.1         # Change to 192.168.99.100 if using Docker Toolbox
+      RUNTESTS: 0                 # Disable Running tests so the cluster starts faster
+      KAFKA_BROKER_ID: 1
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,PLAINTEXT_HOST://localhost:9092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+    ports:
+      - 2181:2181                 # Zookeeper
+      - 3030:3030                 # Landoop UI
+      - 8081-8083:8081-8083       # REST Proxy, Schema Registry, Kafka Connect ports
+      - 9581-9585:9581-9585       # JMX Ports
+      - 9092:9092   
+
+  primary-ksqldb-server:
+    image: confluentinc/ksqldb-server:0.22.0
+    hostname: primary-ksqldb-server
+    container_name: primary-ksqldb-server
+    depends_on:
+      - kafka
+    ports:
+      - "8088:8088"
+    environment:
+      KSQL_LISTENERS: http://0.0.0.0:8088
+      KSQL_BOOTSTRAP_SERVERS: kafka:9092
+      KSQL_KSQL_SCHEMA_REGISTRY_URL: http://kafka:8081
+      KSQL_KSQL_LOGGING_PROCESSING_STREAM_AUTO_CREATE: "true"
+      KSQL_KSQL_LOGGING_PROCESSING_TOPIC_AUTO_CREATE: "true"
