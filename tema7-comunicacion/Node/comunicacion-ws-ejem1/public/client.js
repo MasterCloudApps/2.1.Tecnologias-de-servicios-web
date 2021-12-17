@@ -1,4 +1,4 @@
-let socket = new WebSocket("ws://localhost:8080/");
+let socket = new WebSocket("ws://localhost:8080/notifications");
 
 socket.onopen = function (e) {
     console.log("WebSocket connection established");
