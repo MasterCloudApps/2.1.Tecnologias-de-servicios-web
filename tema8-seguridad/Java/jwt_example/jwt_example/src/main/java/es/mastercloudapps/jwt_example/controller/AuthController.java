@@ -1,5 +1,8 @@
 package es.mastercloudapps.jwt_example.controller;
 
+import static es.mastercloudapps.jwt_example.entity.ERole.ROLE_ADMIN;
+import static es.mastercloudapps.jwt_example.entity.ERole.ROLE_USER;
+
 import es.mastercloudapps.jwt_example.entity.ERole;
 import es.mastercloudapps.jwt_example.entity.Role;
 import es.mastercloudapps.jwt_example.entity.User;
@@ -10,6 +13,7 @@ import es.mastercloudapps.jwt_example.repository.UserRepository;
 import es.mastercloudapps.jwt_example.request.LoginRequest;
 import es.mastercloudapps.jwt_example.request.SignupRequest;
 import es.mastercloudapps.jwt_example.security.UserDetailsImplementation;
+import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -44,6 +48,18 @@ public class AuthController {
 
   @Autowired
   JwtUtils jwtUtils;
+
+  @PostConstruct
+  public void init() {
+
+    Role role1 = new Role();
+    role1.setName(ROLE_USER);
+    Role role2 = new Role();
+    role2.setName(ROLE_ADMIN);
+    roleRepository.save(role1);
+    roleRepository.save(role2);
+
+  }
 
   @PostMapping("/signin")
   public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
@@ -89,7 +105,7 @@ public class AuthController {
     Set<Role> roles = new HashSet<>();
 
     if (strRoles == null) {
-      Role userRole = roleRepository.findByName(ERole.ROLE_USER)
+      Role userRole = roleRepository.findByName(ROLE_USER)
           .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
       roles.add(userRole);
     } else {
@@ -99,7 +115,7 @@ public class AuthController {
                   .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
           roles.add(adminRole);
         } else {
-          Role userRole = roleRepository.findByName(ERole.ROLE_USER)
+          Role userRole = roleRepository.findByName(ROLE_USER)
                   .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
           roles.add(userRole);
         }
