@@ -21,3 +21,9 @@ hs_err_pid*
 
 
 **/.attach_pid*
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr

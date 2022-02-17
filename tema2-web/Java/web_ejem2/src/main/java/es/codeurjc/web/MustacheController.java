@@ -41,7 +41,7 @@ public class MustacheController {
 		List<Person> people = new ArrayList<>();
 		people.add(new Person("Pepe","Pérez"));
 		people.add(new Person("Juan","González"));
-		people.add(new Person("Romón","Lucas"));
+		people.add(new Person("Ramón","Lucas"));
 
 		model.addAttribute("people", people);
 
