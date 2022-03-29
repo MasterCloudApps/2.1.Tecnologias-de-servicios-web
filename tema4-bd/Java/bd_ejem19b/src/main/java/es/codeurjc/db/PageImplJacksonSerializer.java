@@ -17,7 +17,7 @@ public class PageImplJacksonSerializer extends JsonSerializer<PageImpl<?>> {
 			throws IOException {
 
 		jsonGenerator.writeStartObject();
-		
+				
 		jsonGenerator.writeFieldName("content");
 		serializerProvider.defaultSerializeValue(page.getContent(), jsonGenerator);
 		
