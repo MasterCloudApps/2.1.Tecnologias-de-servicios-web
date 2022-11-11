@@ -8,6 +8,8 @@
 **/target
 **/node_modules
 **/package-lock.json
+**/mvnw
+**/mvnw.cmd
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
