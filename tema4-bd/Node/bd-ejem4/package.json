@@ -3,6 +3,6 @@
     "version": "1.0.0",
     "type": "module",
     "dependencies": {
-        "mongoose": "6.0.14"
+        "mongoose": "6.4.6"
     }
 }
