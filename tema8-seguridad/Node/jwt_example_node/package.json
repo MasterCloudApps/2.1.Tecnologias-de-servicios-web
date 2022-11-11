@@ -17,7 +17,7 @@
     "cors": "^2.8.5",
     "express": "^4.17.2",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^6.1.5"
+    "mongoose": "^6.4.6"
   },
   "type": "module"
 }
