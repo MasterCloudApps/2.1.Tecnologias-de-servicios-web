@@ -1,8 +1,0 @@
-{
-    "name": "bd-ejem4",
-    "version": "1.0.0",
-    "type": "module",
-    "dependencies": {
-        "mongoose": "6.0.14"
-    }
-}

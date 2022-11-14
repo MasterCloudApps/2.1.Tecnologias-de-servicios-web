@@ -1,8 +1,0 @@
-{
-  "name": "rabbitmq-ejem1",
-  "version": "1.0.0",
-  "type": "module",
-  "dependencies": {
-    "amqplib": "0.8.0"
-  }
-}

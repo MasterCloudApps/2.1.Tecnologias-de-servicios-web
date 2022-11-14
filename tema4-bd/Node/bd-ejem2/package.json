@@ -1,8 +1,0 @@
-{
-    "name": "bd-ejem2",
-    "version": "1.0.0",
-    "type": "module",
-    "dependencies": {
-        "mongodb": "4.2.0"
-    }
-}
