@@ -17,7 +17,7 @@ public class Post {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
-	private String user;
+	private String username;
 	private String title;
 	private String text;
 
@@ -35,12 +35,12 @@ public class Post {
 		this.id = id;
 	}
 
-	public String getUser() {
-		return user;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setUser(String name) {
-		this.user = name;
+	public void setUsername(String name) {
+		this.username = name;
 	}
 
 	public String getTitle() {

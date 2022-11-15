@@ -1,12 +1,12 @@
 package es.codeurjc.db;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 @Entity
-public class User {
+public class Player {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -14,10 +14,10 @@ public class User {
 
 	private String data;
 
-	public User() {
+	public Player() {
 	}
 
-	public User(String data) {
+	public Player(String data) {
 		this.data = data;
 	}
 

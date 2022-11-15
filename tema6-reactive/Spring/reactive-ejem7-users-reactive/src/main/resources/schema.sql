@@ -1,1 +1,1 @@
-CREATE TABLE user (id SERIAL PRIMARY KEY, first_name VARCHAR(255), last_name VARCHAR(255));
+CREATE TABLE IF NOT EXISTS player (id SERIAL PRIMARY KEY, first_name VARCHAR(255), last_name VARCHAR(255));

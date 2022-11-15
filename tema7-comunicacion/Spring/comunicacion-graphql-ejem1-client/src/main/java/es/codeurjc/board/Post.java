@@ -4,7 +4,7 @@ public class Post {
 
 	private Long id;
 
-	private String user;
+	private String username;
 	private String title;
 	private String text;
 
@@ -12,9 +12,9 @@ public class Post {
 
 	}
 
-	public Post(String user, String title, String text) {
+	public Post(String username, String title, String text) {
 		super();
-		this.user = user;
+		this.username = username;
 		this.title = title;
 		this.text = text;
 	}
@@ -27,12 +27,12 @@ public class Post {
 		this.id = id;
 	}
 
-	public String getUser() {
-		return user;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setUser(String user) {
-		this.user = user;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getTitle() {
@@ -53,7 +53,7 @@ public class Post {
 
 	@Override
 	public String toString() {
-		return "Post [id=" + id + ", user=" + user + ", title=" + title + ", text=" + text + "]";
+		return "Post [id=" + id + ", user=" + username + ", title=" + title + ", text=" + text + "]";
 	}
 
 }

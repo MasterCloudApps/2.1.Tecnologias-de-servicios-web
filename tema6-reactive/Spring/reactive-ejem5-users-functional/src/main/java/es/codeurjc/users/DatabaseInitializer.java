@@ -2,14 +2,14 @@ package es.codeurjc.users;
 
 import java.util.stream.Stream;
 
-import javax.annotation.PostConstruct;
+import jakarta.annotation.PostConstruct;
 
 import org.springframework.stereotype.Component;
 
 @Component
 public class DatabaseInitializer {
 
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     DatabaseInitializer(UserRepository userRepository){
         this.userRepository = userRepository;

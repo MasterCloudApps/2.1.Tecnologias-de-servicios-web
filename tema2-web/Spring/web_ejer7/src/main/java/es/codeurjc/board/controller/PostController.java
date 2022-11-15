@@ -3,7 +3,7 @@ package es.codeurjc.board.controller;
 import java.io.IOException;
 import java.net.MalformedURLException;
 
-import javax.servlet.http.HttpSession;
+import jakarta.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

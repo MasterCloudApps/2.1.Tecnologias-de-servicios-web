@@ -3,7 +3,7 @@ package es.codeurjc.libreria;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
+import jakarta.annotation.PostConstruct;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,8 +14,8 @@ import com.fasterxml.jackson.annotation.JsonView;
 @RestController
 public class LibrosAutoresController {
 
-	private List<Libro> libros = new ArrayList<>();
-	private List<Autor> autores = new ArrayList<>();
+	private final List<Libro> libros = new ArrayList<>();
+	private final List<Autor> autores = new ArrayList<>();
 
 	@PostConstruct
 	public void init() {

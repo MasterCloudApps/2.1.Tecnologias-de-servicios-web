@@ -3,11 +3,11 @@ package es.codeurjc.db.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Team {
@@ -21,7 +21,7 @@ public class Team {
 	private int ranking;
 
 	@OneToMany(mappedBy="team")
-	private List<Player> players = new ArrayList<>();
+	private final List<Player> players = new ArrayList<>();
 
 	protected Team() {
 	}

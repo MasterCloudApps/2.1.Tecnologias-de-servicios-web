@@ -1,10 +1,10 @@
 package es.codeurjc.db;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Team {
@@ -16,10 +16,10 @@ public class Team {
 	private String data;
 
 	@ManyToOne
-	private User userA;
+	private Player playerA;
 
 	@ManyToOne
-	private User userB;
+	private Player playerB;
 
 	public Team() {
 		super();
@@ -34,25 +34,25 @@ public class Team {
 		return data;
 	}
 
-	public User getUserA() {
-		return userA;
+	public Player getUserA() {
+		return playerA;
 	}
 
-	public void setUserA(User userA) {
-		this.userA = userA;
+	public void setUserA(Player playerA) {
+		this.playerA = playerA;
 	}
 
-	public User getUserB() {
-		return userB;
+	public Player getUserB() {
+		return playerB;
 	}
 
-	public void setUserB(User userB) {
-		this.userB = userB;
+	public void setUserB(Player playerB) {
+		this.playerB = playerB;
 	}
 
 	@Override
 	public String toString() {
-		return "Team [id=" + id + ", data=" + data + ", userA=" + userA + ", userB=" + userB + "]";
+		return "Team [id=" + id + ", data=" + data + ", userA=" + playerA + ", userB=" + playerB + "]";
 	}
 
 }

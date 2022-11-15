@@ -4,7 +4,7 @@ import static org.springframework.web.servlet.support.ServletUriComponentsBuilde
 
 import java.net.URI;
 
-import javax.annotation.PostConstruct;
+import jakarta.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -37,7 +37,7 @@ public class PostController {
 	public void init() {
 
 		Post p = new Post();
-		p.setUser("Pepe");
+		p.setUsername("Pepe");
 		p.setTitle("Vendo moto");
 		p.setText("Bla bla...");
 		p.addComment(new Comment("Juan", "Pues si"));

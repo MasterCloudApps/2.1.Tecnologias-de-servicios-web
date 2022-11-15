@@ -2,7 +2,7 @@ package es.codeurjc.db;
 
 import java.util.List;
 
-import javax.annotation.PostConstruct;
+import jakarta.annotation.PostConstruct;
 
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;

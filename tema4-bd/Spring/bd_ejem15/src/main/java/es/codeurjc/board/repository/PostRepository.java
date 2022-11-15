@@ -9,7 +9,7 @@ import es.codeurjc.board.model.Post;
 
 public interface PostRepository extends JpaRepository<Post, Long> {
 	
-	@Query("SELECT DISTINCT p FROM Post p JOIN p.comments c WHERE c.user=?1")
+	@Query("SELECT DISTINCT p FROM Post p JOIN p.comments c WHERE c.username=?1")
 	List<Post> findByCommentsUser(String user);	
 	
 }

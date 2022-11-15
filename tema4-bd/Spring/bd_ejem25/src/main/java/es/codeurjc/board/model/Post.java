@@ -2,12 +2,11 @@ package es.codeurjc.board.model;
 
 import java.sql.Blob;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Lob;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -18,8 +17,7 @@ public class Post {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
-	@Column(name = "userName")
-	private String user;
+	private String username;
 	private String title;
 	private String text;
 	private String image;
@@ -31,9 +29,9 @@ public class Post {
 	public Post() {
 	}
 
-	public Post(String user, String title, String text) {
+	public Post(String username, String title, String text) {
 		super();
-		this.user = user;
+		this.username = username;
 		this.title = title;
 		this.text = text;
 	}
@@ -46,12 +44,12 @@ public class Post {
 		this.id = id;
 	}
 
-	public String getUser() {
-		return user;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setUser(String name) {
-		this.user = name;
+	public void setUsername(String name) {
+		this.username = name;
 	}
 
 	public String getTitle() {

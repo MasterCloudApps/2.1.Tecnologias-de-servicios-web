@@ -4,13 +4,13 @@ import org.springframework.context.annotation.DependsOn;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Flux;
 
-import javax.annotation.PostConstruct;
+import jakarta.annotation.PostConstruct;
 
 @Component
 @DependsOn({"initializer"})
 public class DatabaseInitializer {
 
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     DatabaseInitializer(UserRepository userRepository){
         this.userRepository = userRepository;

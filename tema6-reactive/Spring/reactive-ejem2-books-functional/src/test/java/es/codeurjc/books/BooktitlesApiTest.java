@@ -7,7 +7,7 @@ import static org.hamcrest.Matchers.is;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.boot.test.web.server.LocalServerPort;
 
 import io.restassured.RestAssured;
 
@@ -27,9 +27,9 @@ public class BooktitlesApiTest {
 
         given().
                 request().param("title", "Java").
-        when().
-                get("/booktitles/").
-        then().
+                when().
+                get("/booktitles").
+                then().
                 statusCode(200).
                 body("size()", is(10));
     }

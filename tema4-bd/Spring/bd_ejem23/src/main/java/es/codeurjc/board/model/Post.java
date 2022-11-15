@@ -7,16 +7,16 @@ public class Post {
 	@Id
 	private String id;
 
-	private String user;
+	private String username;
 	private String title;
 	private String text;
 	
 	public Post() {
 	}
 
-	public Post(String user, String title, String text) {
+	public Post(String username, String title, String text) {
 		super();
-		this.user = user;
+		this.username = username;
 		this.title = title;
 		this.text = text;
 	}
@@ -29,12 +29,12 @@ public class Post {
 		this.id = id;
 	}
 
-	public String getUser() {
-		return user;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setUser(String name) {
-		this.user = name;
+	public void setUsername(String name) {
+		this.username = name;
 	}
 
 	public String getTitle() {

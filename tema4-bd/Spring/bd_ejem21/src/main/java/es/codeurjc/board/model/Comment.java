@@ -1,10 +1,10 @@
 package es.codeurjc.board.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -15,7 +15,7 @@ public class Comment {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
-	private String user;
+	private String username;
 	private String comment;
 
 	@ManyToOne
@@ -27,7 +27,7 @@ public class Comment {
 
 	public Comment(String nickname, String comment) {
 		super();
-		this.user = nickname;
+		this.username = nickname;
 		this.comment = comment;
 	}
 
@@ -39,12 +39,12 @@ public class Comment {
 		this.id = id;
 	}
 
-	public String getUser() {
-		return user;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setUser(String nickname) {
-		this.user = nickname;
+	public void setUsername(String nickname) {
+		this.username = nickname;
 	}
 
 	public String getComment() {

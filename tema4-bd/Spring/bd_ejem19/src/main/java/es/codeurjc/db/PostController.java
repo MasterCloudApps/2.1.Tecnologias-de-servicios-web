@@ -1,6 +1,6 @@
 package es.codeurjc.db;
 
-import javax.annotation.PostConstruct;
+import jakarta.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -27,7 +27,7 @@ public class PostController {
 	public Page<Post> getPosts(@RequestParam(required = false) String user, Pageable page) {
 
 		if (user != null) {
-			return posts.findByUser(user, page);
+			return posts.findByUsername(user, page);
 		} else {
 			return posts.findAll(page);
 		}

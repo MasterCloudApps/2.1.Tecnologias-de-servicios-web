@@ -11,13 +11,13 @@ type Mutation {
 
 type Post {
     id: ID!
-    user: String!
+    username: String!
     title: String!
     text: String!
 }
 
 input PostInput {
-    user: String!
+    username: String!
     title: String!
     text: String!
 }
