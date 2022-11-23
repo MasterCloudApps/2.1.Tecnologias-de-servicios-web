@@ -9,5 +9,5 @@ public interface TournamentRepository extends JpaRepository<Tournament, Long> {
 
 	@Query("SELECT distinct t FROM Match m JOIN m.tournament t " +
 		"WHERE m.team1 = :team OR m.team2 = :team")
-	public List<Tournament> getTournaments(Team team);
+    List<Tournament> getTournaments(Team team);
 }

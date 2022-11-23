@@ -8,6 +8,6 @@ import org.springframework.data.jpa.repository.Query;
 public interface MatchRepository extends JpaRepository<Match, Long> {
 
 	@Query("SELECT m FROM Match m WHERE m.tournament = :t")
-	public List<Match> getMatches(Tournament t);
+    List<Match> getMatches(Tournament t);
 
 }

@@ -9,6 +9,6 @@ public interface TeamRepository extends JpaRepository<Team, Long> {
 
 	@Query("SELECT distinct team FROM Match m, Team team "
 			+ "WHERE (m.team1 = team OR m.team2 = team) AND  m.tournament = :t")
-	public List<Team> getTeams(Tournament t);
+    List<Team> getTeams(Tournament t);
 
 }
