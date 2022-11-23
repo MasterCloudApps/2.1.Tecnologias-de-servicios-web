@@ -10,20 +10,17 @@ import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-class BooksResponse {
-    public List<Book> items;
-}
-
-class Book {
-    public VolumeInfo volumeInfo;
-}
-
-class VolumeInfo {
-    public String title;
-}
-
 @RestController
 public class BooksController {
+
+    record BooksResponse(List<Book> items) {
+    }
+
+    record Book(VolumeInfo volumeInfo) {
+    }
+
+    record VolumeInfo(String title) {
+    }
 
     //Return type is not Flux<String> because:
     //  * https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/web-reactive.html#webflux-codecs-jackson
@@ -37,8 +34,8 @@ public class BooksController {
         Mono<BooksResponse> data = WebClient.create(url).get().retrieve().bodyToMono(BooksResponse.class);
 
         return data
-            .flatMapMany(d -> Flux.fromIterable(d.items))
-            .map(book -> book.volumeInfo.title)
+            .flatMapMany(d -> Flux.fromIterable(d.items()))
+            .map(book -> book.volumeInfo().title())
             .collectList();
     }
 }

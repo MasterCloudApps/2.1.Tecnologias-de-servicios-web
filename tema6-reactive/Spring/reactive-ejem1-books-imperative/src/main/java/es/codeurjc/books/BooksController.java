@@ -1,41 +1,39 @@
 package es.codeurjc.books;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-class BooksResponse {
-	public List<Book> items;
-}
+import java.util.ArrayList;
+import java.util.List;
 
-class Book {
-	public VolumeInfo volumeInfo;
-}
-
-class VolumeInfo {
-	public String title;
-}
 
 @RestController
 public class BooksController {
 
-	@GetMapping("/booktitles")
-	public List<String> getBookTitles(@RequestParam String title) {
+    record BooksResponse(List<Book> items) {
+    }
 
-		String url = "https://www.googleapis.com/books/v1/volumes?q=intitle:" + title;
+    record Book(VolumeInfo volumeInfo) {
+    }
 
-		BooksResponse data = new RestTemplate().getForObject(url, BooksResponse.class);
+    record VolumeInfo(String title) {
+    }
 
-		List<String> bookTitles = new ArrayList<>();
+    @GetMapping("/booktitles")
+    public List<String> getBookTitles(@RequestParam String title) {
 
-		for (Book book : data.items) {
-			bookTitles.add(book.volumeInfo.title);
-		}
+        String url = "https://www.googleapis.com/books/v1/volumes?q=intitle:" + title;
 
-		return bookTitles;
-	}
+        BooksResponse data = new RestTemplate().getForObject(url, BooksResponse.class);
+
+        List<String> bookTitles = new ArrayList<>();
+
+        for (Book book : data.items()) {
+            bookTitles.add(book.volumeInfo().title());
+        }
+
+        return bookTitles;
+    }
 }
