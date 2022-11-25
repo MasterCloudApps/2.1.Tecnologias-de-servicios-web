@@ -13,11 +13,10 @@ public class HelloService extends HelloServiceImplBase {
     	
         System.out.println("Request received from client:\n" + request);
 
-        String greeting = new StringBuilder().append("Hello, ")
-            .append(request.getFirstName())
-            .append(" ")
-            .append(request.getLastName())
-            .toString();
+        String greeting = "Hello, " +
+                request.getFirstName() +
+                " " +
+                request.getLastName();
 
         HelloResponse response = HelloResponse.newBuilder()
             .setGreeting(greeting)
