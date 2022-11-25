@@ -10,8 +10,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class PostService {
 
-	private ConcurrentMap<Long, Post> posts = new ConcurrentHashMap<>();
-	private AtomicLong nextId = new AtomicLong(1);
+	private final ConcurrentMap<Long, Post> posts = new ConcurrentHashMap<>();
+	private final AtomicLong nextId = new AtomicLong(1);
 
 	public PostService() {
 		save(new Post("Pepe", "Vendo moto", "Barata, barata"));

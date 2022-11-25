@@ -12,8 +12,8 @@ import es.codeurjc.board.model.Post;
 @Service
 public class PostService {
 
-	private ConcurrentMap<Long, Post> posts = new ConcurrentHashMap<>();
-	private AtomicLong nextId = new AtomicLong();
+	private final ConcurrentMap<Long, Post> posts = new ConcurrentHashMap<>();
+	private final AtomicLong nextId = new AtomicLong();
 
 	public PostService() {
 		save(new Post("Pepe", "Vendo moto", "Barata, barata"));

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class GreetingController {
 
 	@Autowired
-	private UserService usersService;
+	private UsersService usersService;
 
 	@GetMapping("/greeting")
 	public String greeting(Model model) {

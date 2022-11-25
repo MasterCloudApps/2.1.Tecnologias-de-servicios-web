@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class SampleLogController {
 
-	private Logger log = LoggerFactory.getLogger(SampleLogController.class);
+	private final Logger log = LoggerFactory.getLogger(SampleLogController.class);
 	
 	@GetMapping("/page_log")
 	public String page(Model model) {

@@ -10,7 +10,7 @@ public class GreetingController {
 	@GetMapping("/greeting")
 	public String greeting(Model model) {
 
-		model.addAttribute("name", "Mundo");
+		model.addAttribute("name", "Mundo2");
 
 		return "greeting_template";
 	}

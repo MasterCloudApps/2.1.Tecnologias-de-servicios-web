@@ -10,7 +10,7 @@ import java.util.List;
 @RequestMapping("/users/")
 public class UserController {
 
-    private UserService userService;
+    private final UserService userService;
 
     UserController(UserService userService) {
         this.userService = userService;
@@ -42,7 +42,7 @@ public class UserController {
     }
 
     private User toUser(UserDTO userDTO){
-        return new User(userDTO.getId(), userDTO.getFirstName(), userDTO.getLastName());
+        return new User(userDTO.id(), userDTO.firstName(), userDTO.lastName());
     }
 
     private UserDTO toUserDTO(User user){

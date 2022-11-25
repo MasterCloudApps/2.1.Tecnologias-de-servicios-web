@@ -2,8 +2,8 @@ package es.codeurjc.web;
 
 public class Person {
 
-    private String name;
-    private String surname;
+    private final String name;
+    private final String surname;
 
     public Person(String name, String surname){
         this.name = name;

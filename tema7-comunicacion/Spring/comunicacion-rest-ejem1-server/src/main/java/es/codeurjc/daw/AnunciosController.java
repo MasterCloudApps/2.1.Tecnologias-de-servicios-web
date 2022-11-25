@@ -19,8 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class AnunciosController {
 
-	private Map<Long, Anuncio> anuncios = new ConcurrentHashMap<>();
-	private AtomicLong lastId = new AtomicLong();
+	private final Map<Long, Anuncio> anuncios = new ConcurrentHashMap<>();
+	private final AtomicLong lastId = new AtomicLong();
 
 	@GetMapping("/anuncios/")
 	public Collection<Anuncio> anuncios() {

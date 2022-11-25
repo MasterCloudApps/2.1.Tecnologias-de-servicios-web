@@ -8,20 +8,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-class BooksResponse {
-	public List<Book> items;
-}
-
-class Book {
-	public VolumeInfo volumeInfo;
-}
-
-class VolumeInfo {
-	public String title;
-}
-
 @RestController
 public class BooksController {
+
+	record BooksResponse(List<Book> items) {
+	}
+
+	record Book(VolumeInfo volumeInfo) {
+	}
+
+	record VolumeInfo(String title) {
+	}
 
 	@GetMapping("/booktitles")
 	public List<String> getBookTitles(@RequestParam String title) {
@@ -34,8 +31,8 @@ public class BooksController {
 
 		List<String> bookTitles = new ArrayList<String>();
 
-		for (Book book : data.items) {
-			bookTitles.add(book.volumeInfo.title);
+		for (Book book : data.items()) {
+			bookTitles.add(book.volumeInfo().title());
 		}
 
 		return bookTitles;

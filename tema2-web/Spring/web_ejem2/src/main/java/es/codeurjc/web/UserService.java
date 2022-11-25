@@ -2,7 +2,7 @@ package es.codeurjc.web;
 
 public class UserService {
 
-	private int numUsers;
+	private final int numUsers;
 
 	public UserService(int numUsers) {
 		this.numUsers = numUsers;

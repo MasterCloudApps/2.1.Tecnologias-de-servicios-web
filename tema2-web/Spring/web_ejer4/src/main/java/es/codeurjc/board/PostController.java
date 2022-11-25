@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class PostController {
 
-	private List<Post> posts = new ArrayList<>();
+	private final List<Post> posts = new ArrayList<>();
 
 	public PostController() {
 		posts.add(new Post("Pepe", "Vendo moto", "Barata, barata"));
