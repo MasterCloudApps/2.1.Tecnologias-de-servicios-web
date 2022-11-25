@@ -1,11 +1,6 @@
-$(document).ready(function () {
-    $.ajax({
-        url: "https://www.googleapis.com/books/v1/volumes?q=intitle:java"
-    }).done(function (data) {
-        for (var i = 0; i < data.items.length; i++) {
-            $("body").append(
-                "<p>" + data.items[i].volumeInfo.title + "</p>");
-        }
-    });
-});
-
+let result = await fetch("https://www.googleapis.com/books/v1/volumes?q=intitle:java");
+let books = await result.json();
+let body = document.getElementsByTagName("body");
+for (let i = 0; i < books.items.length; i++) {
+    body[0].innerHTML += `<p> ${books.items[i].volumeInfo.title}</p>`;
+}
