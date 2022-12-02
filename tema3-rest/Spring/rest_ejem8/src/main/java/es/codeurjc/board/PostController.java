@@ -51,7 +51,7 @@ public class PostController {
 
 		URI location = fromCurrentRequest().path("/{id}").buildAndExpand(post.getId()).toUri();
 
-		return ResponseEntity.created(location).body(postDTO);
+		return ResponseEntity.created(location).body(mapper.toDTO(post));
 	}
 
 	@PutMapping("/{id}")
