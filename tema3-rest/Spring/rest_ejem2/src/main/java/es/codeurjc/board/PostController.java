@@ -16,18 +16,18 @@ import org.springframework.web.bind.annotation.RestController;
 import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
 
 @RestController
-@RequestMapping("/posts")
+@RequestMapping("/posts/")
 public class PostController {
 
 	@Autowired
 	private PostService posts;
 
-	@GetMapping("/")
+	@GetMapping
 	public Collection<Post> getPosts() {
 		return posts.findAll();
 	}
 
-	@GetMapping("/{id}")
+	@GetMapping("{id}")
 	public ResponseEntity<Post> getPost(@PathVariable long id) {
 
 		Post post = posts.findById(id);
@@ -39,7 +39,7 @@ public class PostController {
 		}
 	}
 
-	@PostMapping("/")
+	@PostMapping
 	public ResponseEntity<Post> createPost(@RequestBody Post post) {
 
 		posts.save(post);
@@ -49,7 +49,7 @@ public class PostController {
 		return ResponseEntity.created(location).body(post);
 	}
 
-	@PutMapping("/{id}")
+	@PutMapping("{id}")
 	public ResponseEntity<Post> replacePost(@PathVariable long id, @RequestBody Post newPost) {
 
 		Post post = posts.findById(id);
@@ -65,7 +65,7 @@ public class PostController {
 		}
 	}
 
-	@DeleteMapping("/{id}")
+	@DeleteMapping("{id}")
 	public ResponseEntity<Post> deletePost(@PathVariable long id) {
 
 		Post post = posts.findById(id);
