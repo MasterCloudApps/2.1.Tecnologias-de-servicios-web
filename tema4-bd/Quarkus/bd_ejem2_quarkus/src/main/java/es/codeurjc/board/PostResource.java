@@ -1,7 +1,5 @@
 package es.codeurjc.board;
 
-import es.codeurjc.books.Post;
-import es.codeurjc.books.PostRepository;
 import io.smallrye.common.annotation.Blocking;
 
 import javax.inject.Inject;
