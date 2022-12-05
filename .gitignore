@@ -30,3 +30,5 @@ hs_err_pid*
 *.iws
 *.iml
 *.ipr
+/tema3-rest/Spring/rest_ejem12/api-docs/.openapi-generator/
+/tema3-rest/Spring/rest_ejem12/api-docs/.openapi-generator-ignore
