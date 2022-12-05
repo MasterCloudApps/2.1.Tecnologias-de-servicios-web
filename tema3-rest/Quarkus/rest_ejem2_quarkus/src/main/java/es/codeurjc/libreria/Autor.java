@@ -1,4 +1,4 @@
-package libreria;
+package es.codeurjc.libreria;
 
 import com.fasterxml.jackson.annotation.JsonView;
 

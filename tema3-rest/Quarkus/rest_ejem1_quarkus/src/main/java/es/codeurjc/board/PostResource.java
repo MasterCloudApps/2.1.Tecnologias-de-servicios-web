@@ -12,7 +12,7 @@ import java.util.Collection;
 public class PostResource {
 
 	@Inject
-	private PostService posts;
+	PostService posts;
 
 	@GET
 	public Collection<Post> getPosts() {
