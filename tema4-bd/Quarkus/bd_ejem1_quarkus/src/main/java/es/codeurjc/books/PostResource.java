@@ -21,8 +21,13 @@ public class PostResource {
 	PostRepository posts;
 
 	@GET
-	public Collection<Post> getPosts() {
-		return posts.listAll();
+	public Collection<Post> getPosts(@QueryParam("username") String username) {
+
+		if(username == null){
+			return posts.listAll();
+		} else {
+			return posts.findByUsername(username);
+		}
 	}
 
 	@GET
