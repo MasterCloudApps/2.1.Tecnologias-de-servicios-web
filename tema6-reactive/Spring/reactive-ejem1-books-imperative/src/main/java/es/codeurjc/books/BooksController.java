@@ -21,17 +21,19 @@ public class BooksController {
     record VolumeInfo(String title) {
     }
 
+    record BookDTO(String title) { }
+
     @GetMapping("/booktitles")
-    public List<String> getBookTitles(@RequestParam String title) {
+    public List<BookDTO> getBookTitles(@RequestParam String title) {
 
         String url = "https://www.googleapis.com/books/v1/volumes?q=intitle:" + title;
 
         BooksResponse data = new RestTemplate().getForObject(url, BooksResponse.class);
 
-        List<String> bookTitles = new ArrayList<>();
+        List<BookDTO> bookTitles = new ArrayList<>();
 
         for (Book book : data.items()) {
-            bookTitles.add(book.volumeInfo().title());
+            bookTitles.add(new BookDTO(book.volumeInfo().title()));
         }
 
         return bookTitles;

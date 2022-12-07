@@ -20,14 +20,16 @@ public class BooksController {
     record VolumeInfo(String title) {
     }
 
+    record BookDTO(String title) { }
+
     @GetMapping("/booktitles")
-    public Stream<String> getBookTitles(@RequestParam String title) {
+    public Stream<BookDTO> getBookTitles(@RequestParam String title) {
 
         String url = "https://www.googleapis.com/books/v1/volumes?q=intitle:" + title;
 
         BooksResponse data = new RestTemplate().getForObject(url, BooksResponse.class);
 
         return data.items().stream()
-            .map(book -> book.volumeInfo().title());
+            .map(book -> new BookDTO(book.volumeInfo().title()));
     }
 }

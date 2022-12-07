@@ -22,12 +22,10 @@ public class BooksController {
     record VolumeInfo(String title) {
     }
 
-    //Return type is not Flux<String> because:
-    //  * https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/web-reactive.html#webflux-codecs-jackson
-    //  * https://github.com/spring-projects/spring-framework/issues/20807
+    record BookDTO(String title) { }
 
     @GetMapping("/booktitles")
-    public Mono<List<String>> getBookTitles(@RequestParam String title) {
+    public Flux<BookDTO> getBookTitles(@RequestParam String title) {
 
         String url = "https://www.googleapis.com/books/v1/volumes?q=intitle:" + title;
 
@@ -35,7 +33,6 @@ public class BooksController {
 
         return data
             .flatMapMany(d -> Flux.fromIterable(d.items()))
-            .map(book -> book.volumeInfo().title())
-            .collectList();
+            .map(book -> new BookDTO(book.volumeInfo().title()));
     }
 }
