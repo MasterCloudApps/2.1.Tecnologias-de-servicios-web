@@ -1,8 +1,11 @@
 package es.codeurjc.users;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -27,12 +30,24 @@ public class UserService {
     }
 
     public User getUser(Long id) {
-        return userRepository.findById(id).orElseThrow();
+        Optional<User> userOptional = userRepository.findById(id);
+
+        if(userOptional.isPresent()){
+            return userOptional.get();
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User with id "+id+" not found");
+        }
     }
 
     public User deleteUser(Long id) {
-        User deletedUser = userRepository.findById(id).orElseThrow();
-        userRepository.deleteById(id);
-        return deletedUser;
+
+        Optional<User> userOptional = userRepository.findById(id);
+
+        if(userOptional.isPresent()){
+            userRepository.deleteById(id);
+            return userOptional.get();
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User with id "+id+" not found");
+        }
     }
 }

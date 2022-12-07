@@ -30,7 +30,7 @@ public class UserService {
 
     public Optional<User> deleteUser(Long id) {
         Optional<User> deletedUser = userRepository.findById(id);
-        userRepository.deleteById(id);
+        deletedUser.ifPresent(u -> userRepository.deleteById(id));
         return deletedUser;
     }
 }
