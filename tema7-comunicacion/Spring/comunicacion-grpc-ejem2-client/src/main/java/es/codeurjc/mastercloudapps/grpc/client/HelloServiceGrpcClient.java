@@ -9,7 +9,7 @@ import es.codeurjc.mastercloudapps.grpc.HelloServiceGrpc.HelloServiceBlockingStu
 import net.devh.boot.grpc.client.inject.GrpcClient;
 
 @Controller
-public class SampleClient implements CommandLineRunner {
+public class HelloServiceGrpcClient implements CommandLineRunner {
 
 	@GrpcClient("helloServer")
 	private HelloServiceBlockingStub client;
@@ -18,8 +18,8 @@ public class SampleClient implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		
 		HelloRequest request = HelloRequest.newBuilder()
-	            .setFirstName("Baeldung")
-	            .setLastName("gRPC")
+	            .setFirstName("Master")
+	            .setLastName("Cloud Apps")
 	            .build();
 	        
 		HelloResponse response = client.hello(request);
