@@ -19,6 +19,6 @@ public class Application {
 	public Queue myQueue() {
 		Map<String, Object> args = new HashMap<>();
         args.put("x-queue-type", "stream");
-    	return new Queue("messages", true, false, false, args);
+    	return new Queue("messages-stream", true, false, false, args);
 	}
 }

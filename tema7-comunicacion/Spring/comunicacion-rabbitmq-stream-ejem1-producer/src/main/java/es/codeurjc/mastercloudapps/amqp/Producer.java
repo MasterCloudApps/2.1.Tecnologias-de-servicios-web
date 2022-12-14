@@ -20,6 +20,6 @@ public class Producer {
 		
 		System.out.println("publishToQueue: '" + data + "'");
 				
-		rabbitTemplate.convertAndSend("messages", data);
+		rabbitTemplate.convertAndSend("messages-stream", data);
 	}
 }
