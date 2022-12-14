@@ -35,7 +35,10 @@ public class UserService {
     }
 
     public Mono<User> deleteUser(Long id) {
-        Mono<User> deletedUser = userRepository.findById(id);
-        return deletedUser.flatMap(user -> userRepository.deleteById(id).then(Mono.just(user)));
+        return userRepository.findById(id)
+            .flatMap(user -> userRepository.deleteById(id).then(Mono.just(user)))
+            .switchIfEmpty(
+                Mono.error(new ResponseStatusException(
+                    HttpStatus.NOT_FOUND, "User with id "+id+" not found")));
     }
 }
