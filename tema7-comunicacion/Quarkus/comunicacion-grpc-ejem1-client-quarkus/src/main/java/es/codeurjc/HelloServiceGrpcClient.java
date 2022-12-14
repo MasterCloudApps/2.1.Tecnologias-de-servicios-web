@@ -2,7 +2,7 @@ package es.codeurjc;
 
 import es.codeurjc.mastercloudapps.grpc.HelloRequest;
 import es.codeurjc.mastercloudapps.grpc.HelloResponse;
-import es.codeurjc.mastercloudapps.grpc.HelloServiceGrpc;
+import es.codeurjc.mastercloudapps.grpc.HelloServiceGrpc.HelloServiceBlockingStub;
 import io.quarkus.grpc.GrpcClient;
 
 import io.quarkus.runtime.QuarkusApplication;
@@ -12,7 +12,7 @@ import io.quarkus.runtime.annotations.QuarkusMain;
 public class HelloServiceGrpcClient implements QuarkusApplication {
 
     @GrpcClient("helloServer")
-    HelloServiceGrpc.HelloServiceBlockingStub client;
+    HelloServiceBlockingStub client;
 
     @Override
     public int run(String... args) throws Exception {
