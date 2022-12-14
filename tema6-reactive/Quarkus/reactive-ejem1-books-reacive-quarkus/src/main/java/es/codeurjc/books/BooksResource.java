@@ -27,6 +27,6 @@ public class BooksResource {
 
 		return data
 				.onItem().transformToMulti(d -> Multi.createFrom().items(d.items().stream()))
-				.map(book -> new BookDTO(book.volumeInfo().title()));
+				.onItem().transform(book -> new BookDTO(book.volumeInfo().title()));
 	}
 }
